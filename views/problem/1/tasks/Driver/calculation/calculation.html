@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calculation - MEttLE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+	<link rel="stylesheet" href="/stylesheets/css/style-2.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<script src="/javascripts/vendor/Buttons.js"></script>
+	<script src="/javascripts/vendor/jquery-1.12.0.js"></script>
+	<script src="/javascripts/vendor/bootstrap.min.js"></script>
+	<script src="/javascripts/vendor/jquery-ui.js"></script>
+	<link href="/stylesheets/vendor/bootstrap-editable.css" rel="stylesheet" />
+	<script src="/javascripts/vendor/bootstrap-editable.min.js"></script>
+	<script src="/javascripts/vendor/pnotify.custom.min.js"></script>
+	<link href="/stylesheets/custom/editable-custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+
+</head>
+
+<body>
+	<section id="middlepart">
+		<div class="top-section">
+			<!-- navigation bar-->
+			<div class="row">
+				<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+					<div class="hoverable-image">
+						<img onclick="navigatorinfo()" src="/images/steering-wheel.png"
+							style="max-width:50px;height:auto; margin:12px; filter: invert() drop-shadow(1px 1px 4px rgba(0,0,0,0.4))" />
+					</div>
+				</div>
+				<style>
+					.hoverable-image:hover {
+						opacity: 0.8;
+						cursor: pointer;
+					}
+
+					.hoverable-image:hover::after {
+						content: "your are currently the driver so you are the one to interact with the page and submit inputs";
+						display: inline-block;
+						left: 0px;
+						top: 0px;
+						padding: 5px;
+						background-color: black;
+						color: white;
+					}
+				</style>
+				<div class="col-sm-6" style="text-align:center;vertical-align:middle">
+					<p>MEttLE</p>
+				</div>
+				<g onclick="sendSimulatorLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_sim" type="image" src="/images/simulator.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+
+				<g onclick="sendInformationLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_info" type="image" src="/images/info.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+
+				<g onclick="sendScratchLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_scribble" type="image" src="/images/scribble.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+
+				<g onclick="sendProblemMapLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_map" type="image" src="/images/map.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+				<div class="col-sm-1" style="text-align:center"> <button id="problem1funcmodel_logout"
+						style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default"
+						onclick="sel_logout()">Logout</button></div>
+			</div>
+		</div>
+
+
+
+		<div class="register">
+			<div class="info">
+				<div class="row" style="text-align:center">
+					<div class="col-lg-8">
+						<p style="padding-left:100px;text-align:left">Substituting reasonable values in the equation,
+							what is the estimate of power? </p>
+					</div>
+					<div class="col-lg-4">
+						<g onclick="sendprobsmtlog()"><a id="menuTrigger" class="dropdown-toggle"
+								data-toggle="dropdown">Problem Statement</a></g>
+						<div id="myMenu">
+							You are participating in an electric car race in which you are required to design an
+							electric car of weight 5kg with wheel diameters of 4” that can traverse a track of 50m in
+							less than 5 seconds. <br>Estimate the electrical power needed to achieve this performance.
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="container-fluid">
+				<div class="row activity" style="text-align:center">
+					<div class="col-lg-6">
+						<!-- To draw the box containing the various tasks and to navigate to any sub-task by clicking on it -->
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px"
+							viewBox="-30 -30 550 550" xml:space="preserve">
+
+							<g onclick="openfunc()">
+								<polygon id="problem1calc_task1" points="0,250 0,500 250,500" class="task_map" />
+								<text x="5" y="450" class="task_text"> Functional Modeling</text>
+							</g>
+							<g onclick="openqual()">
+								<polygon id="problem1calc_task2" points="0,0 0,250 250,500 500,500" class="task_map" />
+								<text x="80" y="300" class="task_text"> Qualitative Modeling </text>
+							</g>
+							<g onclick="openquant()">
+								<polygon id="problem1calc_task3" points="250,0 250,250 500,500 500,250"
+									class="task_map" />
+								<text x="280" y="250" fill="#000000" font-size="18"> Quantitative Modeling </text>
+							</g>
+							<!-- As this is the calc page the subtasks in the calc task are shown -->
+							<!--  <g onclick="opencalc()"> -->
+								<polygon id="problem1calc_search" points="0,0 250,250 250,0"
+									class="current_subtask_map" />
+								<text x="90" y="40" class="current_subtask_text">Search Values <tspan x="90" y="60"
+										class="subtask_text"> for variables </tspan></text>
+								<polygon id="problem1calc_eval" points="130,130 250,130 250,0"
+									class="current_subtask_map" />
+								<text x="180" y="95" class="current_subtask_text">Evaluate <tspan x="180" y="115"
+										class="subtask_text"> Values </tspan> </text>
+								<polygon id="problem1calc_calc" points="130,130 250,250 250,130"
+									class="current_subtask_map" />
+								<text x="175" y="150" class="current_subtask_text">Calculate <tspan x="175" y="170"
+										class="subtask_text"> Estimate </tspan> </text>
+								<!-- </g> -->
+
+							<g onclick="openeval()">
+								<polygon id="problem1calc_task5" points="250,0 500,250 500,0" class="task_map" />
+								<text id="problem1calc_task5" x="370" y="80" class="task_text">Evaluation </text></g>
+
+							<!--  <g onclick="opencalc()"> -->
+								<text x="80" y="-10" class="task_text"> Calculation </text>
+								<path id="problem1calc_task4" d="M 0,0 L 250,250 L 250,0 Z" class="current_task_path" />
+							<!-- </g> -->
+						</svg>
+					</div>
+					<div class="col-lg-6" style="margin-top: 30px;">
+						<div style="height:550px;width:550px;border-style: groove;">
+
+							The equation for electric power you wrote was
+							<div class="subtask_text" class="medium_margin subtask_text txt_left">
+								<div id="pre_txt" class="medium_margin rcorners txt_left" style="height:50px;">
+								</div>
+								<div class="medium_margin subtask_text txt_left">
+									Identify reasonable values for the parameters in your equation and enter them in the
+									table below.
+
+									<g onClick="clickAddDataLogRecord()"><button type="button" class="btn btn-info"
+											data-toggle="modal" data-target="#myModal">Add Data</button>
+										&nbsp&nbsp&nbsp&nbsp&nbsp</g>
+										<div class="popup"><button style="float:right" onClick="openprompts()"
+												class="btn btn-primary" id="problem1calc_guide" type="button">Guide
+												Me</button> <span class="popuptext" id="problem1calc_prompts">1) What
+												should this parameter value be according to the problem specifications?
+												<br><br>
+												2) If this parameter is not specified in the problem, what are the
+												highest and lowest values of this parameter that you can think of? Is
+												the value that you have chosen in between these two extremes?<br><br>
+												3) Compare your chosen value with some other value for this parameter
+												that you know for sure. For example, compare length with the length of a
+												scale. Or mass with a mass of 1Kg. <br><br>
+												4) See the simulator for efficiency of motors and information page for
+												drag coefficients. Identify which of these values is most applicable in
+												the given problem. <br><br></span></div>
+
+										<div style="height:250px;">
+											<table class="table" id="data_table">
+												<tr>
+													<th>Parameter
+													</th>
+													<th>Value
+													</th>
+													<th>Justification for value
+													</th>
+													<th>remove
+													</th>
+												</tr>
+
+											</table>
+										</div>
+										<div class="row activity subtask_text">
+											Calculate the estimate and enter the value here. You may use the Calculator
+											to calculate.<br>
+											<textarea id="question1" rows="1" cols="40" name="question1">{{answerData.[1]}}
+              				</textarea>
+										</div>
+										<div class="row">
+											<div class="col-md-8"></div>
+											<div class="col-md-4">
+
+												<button type="button" class="btn btn-primary btn-sm editable-submit"
+													onclick="stoer_data()"><i
+														class="glyphicon glyphicon-ok"></i></button>
+												<button type="button" class="btn btn-default btn-sm editable-cancel"
+													onclick="clearData()"><i
+														class="glyphicon glyphicon-remove"></i></button>
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="medium_margin" style="width:550px">
+							<button style="float:right" onClick="openeval();" class="btn" id="problem1calc_next"
+								type="button">Click to evaluate your estimated value</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- data entry Modal -->
+	<div id="myModal" class="modal fade" data-backdrop="false" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Enter reasonable values for the parameters</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<fieldset>
+							<label class="validateTips"></label>
+							<label for="param">Parameter</label>
+							<input type="text" name="param" id="param" class="text ui-widget-content ui-corner-all">
+							<br>
+							<label for="p_val">Value</label>
+							<input type="text" name="p_val" id="p_val" class="text ui-widget-content ui-corner-all">
+							<br>
+							<label for="argument">Justification for value</label>
+							<input type="text" name="argument" id="argument"
+								class="text ui-widget-content ui-corner-all"> <br>
+
+							<!-- Allow form submission with keyboard without duplicating the dialog button -->
+							<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+						</fieldset>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="add_submit" onClick="add_data()"
+						class="btn btn-success">Add</button><button type="button" class="btn btn-default"
+						data-dismiss="modal" onClick="close_modal()">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- modal for explanation -->
+	<div aria-hidden="true" class="modal fade" data-backdrop="false" id="ExplnModal" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-heading">
+					<button disabled type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h2 class="modal-title">Discuss with your partner while they type the answer to the question below</h2>
+				</div>
+				<div class=" medium_margin"> What were you thinking as you solved that step and what did you learn?
+				</div>
+				<div style="margin:20px"><textarea disabled id="explain0" class="form-control input-large "
+						rows="5">{{answerData.[2]}}</textarea>
+				</div>
+				<div class="modal-body" style="float:center">
+					<button disabled type="button" class="btn btn-primary" onclick="logRecordAndJump(desturl)">Continue</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="/javascripts/vendor/jquery-2.2.1.min.js"></script>
+<script src="/javascripts/vendor/bootstrap.min.js"></script>
+<script src="/javascripts/vendor/common.js"></script>
+<script src="/javascripts/vendor/pnotify.custom.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+var socket = io('http://10.68.6.172:8080');
+var name = "{{ sessionName }}";
+//window.onclose = socket.emit('Driver-close-window',{text:name});
+	
+	// open problem statement
+	mnuOut = false;
+	$('#menuTrigger').click(function () {
+		if (mnuOut) {
+			//Menu is visible, so HIDE menu
+			$('#myMenu').animate({
+				right: '-200px'
+			}, 800);
+			mnuOut = false;
+		} else {
+			//Menu is hidden, so SHOW menu
+			$('#myMenu').animate({
+				right: 0
+			}, 800);
+			mnuOut = true;
+		}
+	})
+
+	var windows = [];
+	var bc = new BroadcastChannel('logoff_channel');
+	bc.onmessage = function (event) {
+		if (event.data == 'logoff') {
+			sel_logout();
+		}
+	}
+
+	window.onbeforeunload = function(){
+	for(var i = 0; i < windows.length; i++){
+    windows[i].close()
+  }
+}
+
+	$.get("/api/problem/answer", {
+			pageID: "/problem/1/tasks/role/quantitative/evaluate/check",
+			questionID: 1
+		})
+		.done(function (data) {
+			//  alert( "Data Loaded: " + data );
+			$("#pre_txt").html(JSON.parse(data)[0]);
+		});
+
+	$.get("/api/problem/answer", {
+			pageID: "/problem/1/tasks/role/calculation/calculation",
+			questionID: 0
+		})
+		.done(function (data) {
+			//  alert( "Data Loaded: " + data );
+			jsb = JSON.parse(JSON.parse(data)[0])
+			for (var i in jsb) {
+				if (i != 0)
+					$("#data_table tbody").append("<tr  id='" + (i) + "' >" +
+						"<td>" + jsb[i][0] + "</td>" +
+						"<td>" + jsb[i][1] + "</td>" +
+						"<td>" + jsb[i][2] + "</td>" +
+						"<td><button type='button' onclick='deletedata(this)' id='" + (i) +
+						"' class='btn btn-default'>Remove</button> </td>" +
+						//"<td><a href='#' class='rem' id='" + (i) + "' class='rem'>Remove</a> </td>" +
+						"</tr>");
+
+			}
+		});
+
+	function updateTips(t) {
+		$(".validateTips")
+			.text(t)
+			.addClass("ui-state-highlight");
+		setTimeout(function () {
+			$(".validateTips").removeClass("ui-state-highlight", 1500);
+		}, 500);
+	}
+
+	function checkLength(o, n, min, max) {
+		if (o.val().length > max || o.val().length < min) {
+			o.addClass("ui-state-error");
+			updateTips(n + " Can not be left empty");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	function add_data() {
+		var valid = true;
+		//	allFields.removeClass("ui-state-error");
+
+		valid = valid && checkLength($("#param"), "parameter", 1, 1000);
+		valid = valid && checkLength($("#p_val"), "value", 1, 10000);
+		valid = valid && checkLength($("#argument"), "argument", 1, 10000);
+		// valid = valid && checkLength(email, "email", 6, 80);
+		// valid = valid && cdata_tableheckLength(password, "password", 5, 16);
+
+		// valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+		// valid = valid && checkRegexp(email, emailRegex, "eg. ui@jquery.com");
+		// valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
+
+		//radioValue = $("input[name='val_t']:checked").val();
+
+
+		if (valid) {
+			$("#data_table tbody").append("<tr id='" + $('#data_table >tbody >tr').length + "' >" +
+				"<td>" + $("#param").val() + "</td>" +
+				"<td>" + $("#p_val").val() + "</td>" +
+				//"<td>" + radioValue + "</td>" +
+				"<td>" + $("#argument").val() + "</td>" +
+				"<td><button type='button' onclick='deletedata(this)' id='" + $('#data_table >tbody >tr').length +
+				"' class='btn btn-default'>Remove</button> </td>" +
+				//"<td><a href='#' id='" + $('#data_table >tbody >tr').length + "' class='rem'>Remove</a> </td>" +
+				"</tr>");
+			//$('#myModal').close();
+			//$("#myModal .close").click();
+			submiQuestion("0", getTableData());
+			socket.emit('Driver-calc-save-data',{text: name});
+			logRecord("calc_data_added")
+			document.getElementById('param').value = '';
+			document.getElementById('p_val').value = '';
+			document.getElementById('argument').value = '';
+		}
+		return valid;
+	}
+
+	$("#param").keyup(function () {
+		socket.emit('Driver-calc-param', {
+			content: $("#param").val(),
+			text: name
+		});
+	});
+
+	$("#p_val").keyup(function () {
+		socket.emit('Driver-calc-val', {
+			content: $("#p_val").val(),
+			text: name
+		});
+	});
+
+	$("#argument").keyup(function () {
+		socket.emit('Driver-calc-arg', {
+			content: $("#argument").val(),
+			text: name
+		});
+	});
+
+	function deletedata(r) {
+		var i = r.parentNode.parentNode.rowIndex;
+		socket.emit('Driver-calc-deletedata', {
+			content: r,
+			text: name
+		});
+		document.getElementById("data_table").deleteRow(i);
+		submiQuestion("0", getTableData());
+		logRecord('calc_delete_data');
+	}
+
+	function close_modal() {
+		socket.emit('Driver-calc-close-modal',{text: name});
+		logRecord("calc_close_modal")
+	}
+
+
+	$("#question1").keyup(function () {
+		socket.emit('Driver-calc-q0', {
+			content: $("#question1").val(),
+			text: name
+		});
+	});
+
+
+	function stoer_data() {
+		submiQuestion("1", $("#question1").val());
+		logRecord("calc_save_estimate")
+	}
+
+	function clearData() {
+		$("#question1").val('');
+		socket.emit('Driver-clear-input', {
+			content: "#question1",
+			text: name
+		});
+		submiQuestion("1", $("#question1").val());
+		logRecord("calc_clear_estimate")
+	}
+
+	function getTableData() {
+		var html_table_data;
+		jsonObj = [];
+		var jsb = {};
+		var data_table = {};
+		var j = 0;
+		$('#data_table tbody>tr').each(function () {
+
+			var data_str;
+			var obj = {};
+			var i = 0;
+
+
+			$('td', this).each(function () {
+				//	data_table.t[i] =$(this).text();
+				obj[i++] = $(this).text();
+				// if (html_table_data.length == 0 || bRowStarted == true) {  
+				//     html_table_data += $(this).text();  
+				//     bRowStarted = false;  
+				// }  
+				// else  
+				//     html_table_data += " | " + $(this).text();  
+
+			});
+			// if(data_table.length==4)
+			data_table[j++] = obj;
+		});
+
+		return (JSON.stringify(data_table));
+	}
+
+
+	function submiQuestion(pk, value) {
+		$.post("/api/problem/answer", {
+				pk: pk,
+				pageID: window.location.pathname,
+				value: value
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//console.log("Data saved ");
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+
+
+	// adds a new row
+	function addTableRow(jQtable) {
+		jQtable.each(function () {
+			var tds = '<tr>';
+			jQuery.each($('tr:last td', this), function () {
+				tds += '<td>' + $(this).html() + '</td>';
+			});
+			tds += '</tr>';
+			if ($('tbody', this).length > 0) {
+				$('tbody', this).append(tds);
+			} else {
+				$(this).append(tds);
+			}
+		});
+	}
+
+	/*//automatically save and share explanation
+	$("#explain0").keyup(function () {
+		socket.emit('Driver-submit-question', {
+			text: $("#explain0").val()
+		});
+	});
+
+	//automatically save and share explanation
+	$("#explain0").focusout(function () {
+		submiQuestion("2", $("#explain0").val());
+	});*/
+
+	var desturl = " ";
+
+	function explanation(url) {
+		$('#ExplnModal').modal("show");
+		desturl = url;
+	}
+
+	function openfunc() {
+		socket.emit('Driver-func',{text:name});
+		explanation("/problem/1/tasks/role/functional/model/main")
+	}
+
+	function openqual() {
+		socket.emit('Driver-qual',{text:name});
+		explanation("/problem/1/tasks/role/qualitative/model")
+	}
+
+	function openquant() {
+		socket.emit('Driver-quant',{text:name});
+		explanation("/problem/1/tasks/role/quantitative/model")
+	}
+
+	function opencalc() {
+		logRecordAndJump("/problem/1/tasks/role/calculation/calculation")
+	}
+
+	function openeval() {
+		socket.emit('Driver-eval',{text:name});
+		explanation("/problem/1/tasks/role/evaluation/evaluation")
+	}
+
+
+	function sendSimulatorLog() {
+		socket.emit('Driver-simulator',{text:name});
+		windows.push(window.open("/problem/1/tasks/driver/simulator", '_blank'));
+		logRecord('/simulator');
+	}
+
+	function sendInformationLog() {
+		socket.emit('Driver-information',{text:name});
+		windows.push(window.open("/problem/1/tasks/driver/information", '_blank'));
+		logRecord('/Information')
+	}
+
+	function sendScratchLog() {
+		socket.emit('Driver-scratch',{text:name});
+		windows.push(window.open("/problem/1/tasks/driver/scribble", '_blank'));
+		logRecord('/scribble')
+	}
+
+	function sendProblemMapLog() {
+		socket.emit('Driver-problem-map',{text:name});
+		windows.push(window.open("/problem/1/tasks/driver/aboutproblem", '_blank'));
+		logRecord('/Problem_Map')
+	}
+
+	function sel_logout() {
+		socket.emit('Driver-logout',{text:name});
+		for (var i = 0; i < windows.length; i++) {
+			windows[i].close()
+		}
+		logRecord('/Logout');
+		window.open("/logout", '_self');
+	}
+
+	function sendprobsmtlog() {
+		socket.emit('Driver-problem-log',{text:name});
+		logRecord('View_prob_smt');
+	}
+
+
+	function openprompts() {
+		socket.emit('Driver-calc-prompt',{text:name});
+		var popup = document.getElementById('problem1calc_prompts');
+		popup.classList.toggle('show'); 
+		logRecord('problem1calc_prompts')
+	}
+
+	function clickAddDataLogRecord() {
+		socket.emit('Driver-calc-add-data',{text:name});
+		logRecord('calc_data_modal')
+	}
+
+	function logRecordAndJump(urlString) {
+		$.post("/api/problem/log", {
+				pageID: window.location.pathname,
+				value: urlString
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//console.log("Data saved ");
+					window.open(urlString.replace("role", JSON.parse(data).role), target = "_self");
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+	function logRecordAndOpen(urlString) {
+		$.post("/api/problem/log", {
+				pageID: window.location.pathname,
+				value: urlString
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//console.log("Data saved ");
+					window.open(urlString, target = "_blank");
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+
+	function logRecord(urlString) {
+		$.post("/api/problem/log", {
+				pageID: window.location.pathname,
+				value: urlString
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//console.log("Data saved ");
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+
+	socket.on('open', function (message) {
+  switch (message.content) {
+   case 'Navigator-next':
+      //console.log(message.nexturl);
+      if (message.sessname == name)
+        logRecordAndJump(message.nexturl);
+      break;
+  case 'Navigator-submit-question':
+      if (message.sessname == name)
+        $('#explain0').val(message.expln);
+      break;
+    }
+  });
+</script>

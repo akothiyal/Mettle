@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Qualitative Modeling - MEttLE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="/javascripts/vendor/go.js"></script>
+  <link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+  <link rel="stylesheet" href="/stylesheets/css/style-2.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="/javascripts/vendor/Buttons.js"></script>
+  <script src="/javascripts/vendor/jquery-1.12.0.js"></script>
+  <script src="/javascripts/vendor/bootstrap.min.js"></script>
+  <script src="/javascripts/vendor/jquery-ui.js"></script>
+  <link href="/stylesheets/vendor/bootstrap-editable.css" rel="stylesheet" />
+  <script src="/javascripts/vendor/bootstrap-editable.min.js"></script>
+  <script src="/javascripts/vendor/pnotify.custom.min.js"></script>
+  <link href="/stylesheets/custom/editable-custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+
+</head>
+
+<body onLoad="init()">
+  <section id="middlepart">
+    <div class="top-section">
+      <!-- defines the top-section containg the buttons for calculator,simulator,info center, scribble pad and problem map and logout -->
+      <div class="row">
+        <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+          <div class="hoverable-image">
+            <img onclick="navigatorInfo()" src="/images/steering-wheel.png"
+              style="max-width:50px;height:auto; margin:12px; filter: invert() drop-shadow(1px 1px 4px rgba(0,0,0,0.4))" />
+          </div>
+        </div>
+        <style>
+          .hoverable-image:hover {
+            opacity: 0.8;
+            cursor: pointer;
+          }
+
+          .hoverable-image:hover::after {
+            content: "Your are currently the Driver so you are the one to interact with the page and submit inputs";
+            display: inline-block;
+            left: 0px;
+            top: 0px;
+            padding: 5px;
+            background-color: black;
+            color: white;
+          }
+        </style>
+        <div class="col-sm-6" style="text-align:center;vertical-align:middle">
+          <p>MEttLE</p>
+        </div>
+        <g onclick="sendSimulatorLog()">
+          <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+            <input id="problem1funcmodel_sim" type="image" src="/images/simulator.png"
+              style="width:110px;height:67px;" />
+          </div>
+        </g>
+
+        <g onclick="sendInformationLog()">
+          <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+            <input id="problem1funcmodel_info" type="image" src="/images/info.png" style="width:110px;height:67px;" />
+          </div>
+        </g>
+
+        <g onclick="sendScratchLog()">
+          <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+            <input id="problem1funcmodel_scribble" type="image" src="/images/scribble.png"
+              style="width:110px;height:67px;" />
+          </div>
+        </g>
+
+        <g onclick="sendProblemMapLog()">
+          <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+            <input id="problem1funcmodel_map" type="image" src="/images/map.png" style="width:110px;height:67px;" />
+          </div>
+        </g>
+        <div class="col-sm-1" style="text-align:center"> <button id="problem1funcmodel_logout"
+            style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default"
+            onclick="sel_logout()">Logout</button></div>
+      </div>
+    </div>
+    <div class="register">
+      <div class="info">
+        <div class="row" style="text-align:center">
+          <div class="col-lg-8">
+            <p style="padding-left:100px;text-align:left">What are the parameters that affect the dominant mechanical
+              power required? </p>
+          </div>
+          <div class="col-lg-4">
+            <g onclick="sendprobsmtlog()"><a id="menuTrigger" class="dropdown-toggle" data-toggle="dropdown">Problem
+                Statement</a></g>
+            <div id="myMenu">
+              You are participating in an electric car race in which you are required to design an electric car of
+              weight 5kg with wheel diameters of 4” that can traverse a track of 50m in less than 5 seconds.
+              <br>Estimate the electrical power needed to achieve this performance.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row activity" style="text-align:center">
+          <div class="col-lg-6">
+            <!-- To draw the box containing the various tasks and to navigate to any sub-task by clicking on it -->
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px" viewBox="-30 -30 550 550"
+              xml:space="preserve">
+              <g onclick="openfunc()">
+                <polygon id="problem1qualevalcheck_task1" points="0,250 0,500 250,500" class="task_map" />
+                <text x="5" y="450" class="task_text"> Functional Modeling</text>
+              </g>
+              <g onclick="openqual()">
+                <polygon id="problem1qualevalcheck_create" points="0,0 0,250 250,500 250,250" class="subtask_map" />
+                <text x="60" y="250" class="subtask_text">Create a causal map</text>
+              </g>
+              <g onclick="openqualeval()">
+                <polygon id="problem1qualevalcheck_eval" points="250,250 250,500 375,375" class="current_subtask_map" />
+                <text x="260" y="365" class="current_subtask_text">Identify
+                  <tspan x="260" y="385"> dominant </tspan>
+                  <tspan x="260" y="405"> parameters</tspan>
+                </text>
+              </g>
+              <g onclick="openqualplan()">
+                <polygon id="problem1qualevalcheck_plan" points="250,500 375,375 500,500" class="subtask_map" />
+                <text x="320" y="470" class="subtask_text">Plan Next steps</text>
+              </g>
+              <g onclick="openquant()">
+                <polygon id="problem1qualevalcheck_task3" points="250,0 250,250 500,500 500,250" class="task_map" />
+                <text x="280" y="250" class="task_text"> Quantitative Modeling </text>
+              </g>
+              <g onclick="opencalc()">
+                <polygon class="task_map" id="problem1qualevalcheck_task4" points="0,0 250,250 250,0"></polygon>
+                <text class="task_text" x="120" y="80">
+                  Calculation
+                </text>
+              </g>
+              <g onclick="openeval()">
+                <polygon class="task_map" id="problem1qualevalcheck_task5" points="250,0 500,250 500,0"></polygon>
+                <text class="task_text" x="370" y="80">
+                  Evaluation
+                </text>
+              </g>
+              <g onclick="openqual()">
+                <text x="-10" y="220" transform="rotate(-90 -10,220)" class="current_task_text"> Qualitative Modeling
+                </text>
+                <path id="problem1qualevalcheck_task2" d="M 0,0 L 0,250 L 250,500 L 500,500 Z"
+                  class="current_task_path" />
+              </g>
+            </svg>
+          </div>
+          <div class="col-lg-6 " style="margin-top: 30px; z-index:0">
+            <div class="subtask_text" style="height:600px;width:550px;border-style: groove;">
+              This is the causal map that you drew
+              <div id="problem1qualmodel_myDiagramDiv2"
+                style="background-color: whitesmoke; border: solid 1px black; width: 95%; height: 200px;margin-bottom: 10px;">
+              </div>
+              <div class="medium_margin subtask_text" style="text-align:left">
+                1) Is the relationship between total power required and maximum velocity linear or non-linear? <br>
+                <input class="medium_margin resizedTextbox" type="text" id="question0" name="question0"
+                  value="{{answerData.[0]}}" />
+              </div>
+              <div class="medium_margin subtask_text" style="text-align:left">
+                2) Is the relationship between total power required and acceleration linear or non-linear?
+                <br>
+                <input class="medium_margin resizedTextbox" type="text" id="question1" name="question1"
+                  value="{{answerData.[1]}}" />
+              </div>
+              <div class="medium_margin subtask_text" style="text-align:left">
+                3) Is the relationship between total power required and mass linear or non-linear? <br>
+                <input class="medium_margin resizedTextbox" type="text" id="question2" name="question2"
+                  value="{{answerData.[2]}}" />
+              </div>
+              <div class="medium_margin subtask_text" style="text-align:left">
+                4) Is the relationship between total power required and the shape factor of the car linear or
+                non-linear? <br>
+                <input class="medium_margin resizedTextbox" type="text" id="question3" name="question3"
+                  value="{{answerData.[3]}}" />
+              </div>
+            </div>
+            <div class="medium_margin" style="width:550px">
+              <button style="float:left" onclick="openqual();" class="btn btn-info" id="problem1qualevalcheck_back"
+                type="button">Go back to identify actions</button>
+              <button id="problem1qualevalcheck_next" style="float:right" onclick="openqualdom()" type="button"
+                class="btn"> Identify dominant parameters </button>
+            </div>
+          </div>
+          <!-- modal for explanation -->
+  <div aria-hidden="true" class="modal fade" data-backdrop="false" id="ExplnModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-heading">
+          <button disabled type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h2 class="modal-title">Discuss with your partner while they type the answer to the question below</h2>
+        </div>
+        <div class=" medium_margin"> What were you thinking as you solved that step and what did you learn? </div>
+        <div style="margin:20px"><textarea disabled id="explain0" class="form-control input-large "
+            rows="5">{{answerData.[4]}}</textarea>
+        </div>
+        <div class="modal-body" style="float:center">
+          <button disabled type="button" class="btn btn-primary" onclick="logRecordAndJump(desturl)">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+<script src="/javascripts/vendor/jquery-2.2.1.min.js"></script>
+<script src="/javascripts/vendor/bootstrap.min.js"></script>
+<script src="/javascripts/vendor/pnotify.custom.min.js"></script>
+<script src="/javascripts/vendor/jquery-ui.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  var socket = io('http://10.68.6.172:8080');
+  var name = "{{ sessionName }}";
+  //window.onclose = socket.emit('Driver-close-window',{text:name});
+  
+  // open problem statement
+  mnuOut = false;
+  $('#menuTrigger').click(function () {
+    if (mnuOut) {
+      //Menu is visible, so HIDE menu
+      $('#myMenu').animate({
+        right: '-200px'
+      }, 800);
+      mnuOut = false;
+    } else {
+      //Menu is hidden, so SHOW menu
+      $('#myMenu').animate({
+        right: 0
+      }, 800);
+      mnuOut = true;
+    }
+  })
+
+  var windows = [];
+  var bc = new BroadcastChannel('logoff_channel');
+  bc.onmessage = function (event) {
+    if (event.data == 'logoff') {
+      sel_logout();
+    }
+  }
+
+  window.onbeforeunload = function(){
+  for(var i = 0; i < windows.length; i++){
+    windows[i].close()
+  }
+}
+
+  $("#question0").focusout(function () {
+    submiQuestion("0", $("#question0").val());
+  });
+
+  $("#question0").keyup(function () {
+    socket.emit('Driver-qual-eval-check-q0', {
+      content: $("#question0").val(),
+      text: name
+    });
+  });
+
+  $("#question1").focusout(function () {
+    submiQuestion("1", $("#question1").val());
+  });
+
+  $("#question1").keyup(function () {
+    socket.emit('Driver-qual-eval-check-q1', {
+      content: $("#question1").val(),
+      text: name
+    });
+  });
+
+  $("#question2").focusout(function () {
+    submiQuestion("2", $("#question2").val());
+  });
+
+  $("#question2").keyup(function () {
+    socket.emit('Driver-qual-eval-check-q2', {
+      content: $("#question2").val(),
+      text: name
+    });
+  });
+
+  $("#question3").focusout(function () {
+    submiQuestion("3", $("#question3").val());
+  });
+
+  $("#question3").keyup(function () {
+    socket.emit('Driver-qual-eval-check-q3', {
+      content: $("#question3").val(),
+      text: name
+    });
+  });
+
+  function submiQuestion(pk, value) {
+    $.post("/api/problem/answer", {
+        pk: pk,
+        pageID: window.location.pathname,
+        value: value
+      })
+      .done(function (data) {
+        if (data.includes("success")) {
+          //console.log("Data saved ");
+        } else {
+          //console.log("Please try again ");
+        }
+      });
+  }
+
+  function init() {
+    if (window.goSamples) goSamples(); // init for these samples -- you don't need to call this
+    var $ = go.GraphObject.make; // for conciseness in defining templates
+
+    //causal map
+    myDiagram2 =
+      $(go.Diagram, "problem1qualmodel_myDiagramDiv2", // must name or refer to the DIV HTML element
+        {
+          // start everything in the middle of the viewport
+          initialContentAlignment: go.Spot.Center,
+          // have mouse wheel events zoom in and out instead of scroll up and down
+          "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom,
+          // support double-click in background creating a new node
+          // "clickCreatingTool.archetypeNodeData": {
+          //   text: "new node"
+          // },
+          // enable undo & redo
+          "undoManager.isEnabled": false
+        });
+
+    // define the Node template
+    myDiagram2.nodeTemplate =
+      $(go.Node, "Spot", {
+          locationObjectName: "ICON",
+          locationSpot: go.Spot.Center
+        },
+        new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify), {
+          selectionObjectName: "ICON"
+        },
+        // define the node primary shape
+        $(go.Shape, "RoundedRectangle", {
+          name: "ICON",
+          parameter1: 10, // the corner has a medium radius
+          desiredSize: new go.Size(40, 40),
+          fill: $(go.Brush, "Linear", {
+            0: "rgb(254, 201, 0)",
+            1: "rgb(254, 162, 0)"
+          }),
+          stroke: "black",
+          portId: "",
+          fromLinkable: true,
+          fromLinkableSelfNode: true,
+          fromLinkableDuplicates: true,
+          toLinkable: true,
+          toLinkableSelfNode: true,
+          toLinkableDuplicates: true,
+          cursor: "pointer"
+        }),
+        $(go.Shape, // provide interior area where the user can grab the node
+          {
+            fill: "transparent",
+            stroke: null,
+            desiredSize: new go.Size(30, 30)
+          }),
+        $(go.TextBlock, {
+            font: "bold 11pt helvetica, bold arial, sans-serif",
+            editable: true, // editing the text automatically updates the model data
+            _isNodeLabel: true,
+            cursor: "move" // visual hint that the user can do something with this node label
+          },
+          new go.Binding("text", "text").makeTwoWay(),
+          // The GraphObject.alignment property is what the NodeLabelDraggingTool modifies.
+          // This TwoWay binding saves any changes to the same named property on the node data.
+          new go.Binding("alignment", "alignment", go.Spot.parse).makeTwoWay(go.Spot.stringify)
+        )
+      );
+    // unlike the normal selection Adornment, this one includes a Button
+    myDiagram2.nodeTemplate.selectionAdornmentTemplate =
+      $(go.Adornment, "Spot",
+        $(go.Panel, "Auto",
+          $(go.Shape, {
+            fill: null,
+            stroke: "blue",
+            strokeWidth: 2
+          }),
+          $(go.Placeholder) // this represents the selected Node
+        ),
+        // the button to create a "next" node, at the top-right corner
+        $("Button", {
+            alignment: go.Spot.TopRight,
+            click: addNodeAndLink // this function is defined below
+          },
+          $(go.Shape, "PlusLine", {
+            desiredSize: new go.Size(6, 6)
+          })
+        ) // end button
+      ); // end Adornment
+    // clicking the button inserts a new node to the right of the selected node,
+    // and adds a link to that new node
+    function addNodeAndLink(e, obj) {
+      var adorn = obj.part;
+      e.handled = true;
+      var diagram = adorn.diagram;
+      diagram.startTransaction("Add State");
+      // get the node data for which the user clicked the button
+      var fromNode = adorn.adornedPart;
+      var fromData = fromNode.data;
+      // create a new "State" data object, positioned off to the right of the adorned Node
+      var toData = {
+        text: "new"
+      };
+      var p = fromNode.location.copy();
+      p.x += 200;
+      toData.loc = go.Point.stringify(p); // the "loc" property is a string, not a Point object
+      // add the new node data to the model
+      var model = diagram.model;
+      // model.addNodeData(toData);
+      // create a link data from the old node data to the new node data
+      var linkdata = {
+        from: model.getKeyForNodeData(fromData), // or just: fromData.id
+        to: model.getKeyForNodeData(toData),
+        text: "transition"
+      };
+      // and add the link data to the model
+      model.addLinkData(linkdata);
+      // select the new Node
+      var newnode = diagram.findNodeForData(toData);
+      diagram.select(newnode);
+      diagram.commitTransaction("Add State");
+      // if the new node is off-screen, scroll the diagram to show the new node
+      diagram.scrollToRect(newnode.actualBounds);
+    }
+    // replace the default Link template in the linkTemplateMap
+    myDiagram2.linkTemplate =
+      $(go.Link, // the whole link panel
+        {
+          curve: go.Link.Bezier,
+          adjusting: go.Link.Stretch,
+          reshapable: true
+        },
+        new go.Binding("points").makeTwoWay(),
+        new go.Binding("curviness", "curviness"),
+        $(go.Shape, // the link shape
+          {
+            strokeWidth: 1.5
+          }),
+        $(go.Shape, // the arrowhead
+          {
+            toArrow: "standard",
+            stroke: null
+          }),
+        $(go.Panel, "Auto",
+          $(go.Shape, // the label background, which becomes transparent around the edges
+            {
+              fill: $(go.Brush, "Radial", {
+                0: "rgb(240, 240, 240)",
+                0.3: "rgb(240, 240, 240)",
+                1: "rgba(240, 240, 240, 0)"
+              }),
+              stroke: null
+            }),
+          $(go.TextBlock, "transition", // the label text
+            {
+              textAlign: "center",
+              font: "10pt helvetica, arial, sans-serif",
+              stroke: "black",
+              margin: 4,
+              editable: true // editing the text automatically updates the model data
+            },
+            new go.Binding("text", "text").makeTwoWay())
+        )
+      );
+
+    // read in the JSON-format data from the "mySavedModel" element
+    load();
+  }
+
+  function load() {
+    $.get("/api/problem/answer", {
+        pageID: "/problem/1/tasks/Driver/qualitative/model",
+        questionID: 0
+      })
+      .done(function (data) {
+        //alert( "Data Loaded: " + data );
+        myDiagram2.model = go.Model.fromJson((JSON.parse(data)[0]));
+      });
+  }
+  /*//automatically save and share explanation
+  $("#explain0").keyup(function () {
+    socket.emit('Driver-submit-question', {
+      text: $("#explain0").val()
+    });
+  });
+
+  //automatically save and share explanation
+  $("#explain0").focusout(function () {
+    submiQuestion("4", $("#explain0").val());
+  });*/
+
+  var desturl = " ";
+
+  function explanation(url) {
+    $('#ExplnModal').modal("show");
+    desturl = url;
+  }
+
+  function openfunc() {
+    socket.emit('Driver-func',{text:name});
+    explanation("/problem/1/tasks/role/functional/model/main")
+  }
+
+
+  function openqual() {
+    socket.emit('Driver-qual',{text:name});
+    explanation("/problem/1/tasks/role/qualitative/model")
+  }
+
+  function openqualeval() {
+    logRecordAndJump("/problem/1/tasks/role/qualitative/evaluate/check")
+  }
+
+  function openqualdom() {
+    socket.emit('Driver-qual-dom',{text:name});
+    explanation("/problem/1/tasks/role/qualitative/evaluate/dominant")
+  }
+
+  function openqualplan() {
+    socket.emit('Driver-qual-plan',{text:name});
+    explanation("/problem/1/tasks/role/qualitative/plan")
+  }
+
+  function openquant() {
+    socket.emit('Driver-quant',{text:name});
+    explanation("/problem/1/tasks/role/quantitative/model")
+  }
+
+
+  function opencalc() {
+    socket.emit('Driver-calc',{text:name});
+    explanation("/problem/1/tasks/role/calculation/calculation")
+  }
+
+
+  function openeval() {
+    socket.emit('Driver-eval',{text:name});
+    explanation("/problem/1/tasks/role/evaluation/evaluation")
+  }
+
+
+  function sendSimulatorLog() {
+    socket.emit('Driver-simulator',{text:name});
+    windows.push(window.open("/problem/1/tasks/driver/simulator", '_blank'));
+    logRecord('/simulator');
+  }
+
+  function sendInformationLog() {
+    socket.emit('Driver-information',{text:name});
+    windows.push(window.open("/problem/1/tasks/driver/information", '_blank'));
+    logRecord('/Information')
+  }
+
+  function sendScratchLog() {
+    socket.emit('Driver-scratch',{text:name});
+    windows.push(window.open("/problem/1/tasks/driver/scribble", '_blank'));
+    logRecord('/scribble')
+  }
+
+  function sendProblemMapLog() {
+    socket.emit('Driver-problem-map',{text:name});
+    windows.push(window.open("/problem/1/tasks/driver/aboutproblem", '_blank'));
+    logRecord('/Problem_Map')
+  }
+
+  function sel_logout() {
+    socket.emit('Driver-logout',{text:name});
+    for (var i = 0; i < windows.length; i++) {
+      windows[i].close()
+    }
+    logRecord('/Logout');
+    window.open("/logout", '_self');
+  }
+
+  function sendprobsmtlog() {
+    socket.emit('Driver-problem-log',{text:name});
+    logRecord('View_prob_smt');
+  }
+function logRecordAndJump(urlString){
+  $.post("/api/problem/log", {pageID: window.location.pathname, value: urlString })
+          .done(function(data) {
+            if (data.includes("success")) {
+              //console.log("Data saved ");
+        window.open(urlString.replace("role",JSON.parse(data).role), target = "_self");
+            }
+            else {
+              //console.log("Please try again ");
+            }
+          });
+}
+
+
+  function logRecordAndOpen(urlString) {
+    $.post("/api/problem/log", {
+        pageID: window.location.pathname,
+        value: urlString
+      })
+      .done(function (data) {
+        if (data.includes("success")) {
+          //console.log("Data saved ");
+          window.open(urlString, target = "_blank");
+        } else {
+          //console.log("Please try again ");
+        }
+      });
+  }
+
+  function logRecord(urlString) {
+    $.post("/api/problem/log", {
+        pageID: window.location.pathname,
+        value: urlString
+      })
+      .done(function (data) {
+        if (data.includes("success")) {
+          //console.log("Data saved ");
+        } else {
+          //console.log("Please try again ");
+        }
+      });
+  }
+
+  socket.on('open', function (message) {
+  switch (message.content) {
+   case 'Navigator-next':
+      //console.log(message.nexturl);
+      if (message.sessname == name)
+        logRecordAndJump(message.nexturl);
+      break;
+  case 'Navigator-submit-question':
+      if (message.sessname == name)
+        $('#explain0').val(message.expln);
+      break;
+        }
+      });
+</script>

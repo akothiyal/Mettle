@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Quantitative Modeling - MEttLE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+    <link rel="stylesheet" href="/stylesheets/css/style-2.css">
+	<script src="/javascripts/vendor/go.js"> </script>
+	<script src="/javascripts/vendor/Buttons.js"></script>
+	<link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+		<?xml-stylesheet type="text/css" href="svg-styles.css" ?>
+</head>
+
+<body>
+	<section id="middlepart">
+		<div class="top-section">
+			<div class="row">
+				<div class="col-sm-6" style="text-align:center;vertical-align:middle">
+					<p>MEttLE</p>
+				</div>
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/simulator" target="_blank"><input id="problem1quantmodel_sim" type="image" src="/images/simulator.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/calculator" target="_blank"><input id="problem1quantmodel_calc" type="image" src="/images/calc.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/information" target="_blank"><input id="problem1quantmodel_info" type="image" src="/images/info.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/scratch" target="_blank"><input  id="problem1quantmodel_scribble"type="image" src="/images/scribble.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="../../map" target="_blank"><input id="problem1quantmodel_map" type="image" src="/images/map.png" style="width:110px;height:67px;"/></a></div>
+		<div class="col-sm-1" style="text-align:center"> <a href="/logout"><button id="problem1quantmodel_logout" style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default">Logout</button></a></div>
+			</div>
+		</div>
+		<div class="register">
+			<div class="info">
+				<div class="row" style="text-align:center">
+				<div class="col-lg-8">
+					<p style="padding-left:100px;text-align:left">What is equation connecting electric power required to the dominant parameters? </p>
+					</div>
+<!-- 						<div class="col-lg-4">
+							<div style="float:right"> <img id="helper" src="/images/help.png" width="30px"></img></div>
+					</div> -->
+					</div>
+			</div>
+			<div class="container-fluid">
+				<div class="row activity" style="text-align:center">
+					<div class="col-lg-6">
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px" viewBox="-30 -10 550 550" xml:space="preserve">
+
+		<g onclick="openfunc()">
+              <polygon id="problem1quantmodel_task1"  points="0,250 0,500 250,500" class="task_map" />
+              <text x="5" y="450" class="task_text"> Functional Modeling</text>
+              </g>
+<g onclick="openqual()">
+		<polygon id="problem1quantmodel_task2" points="0,0 0,250 250,500 500,500"  class="task_map"/>
+		<text  x="80" y="300" class="task_text"> Qualitative Modeling </text>
+</g>
+<g onclick="openquant()">
+		<polygon id="problem1quantmodel_create" class="current_subtask_map"  points="250,0 250,250 500,250" />
+        <text  x="260" y="200" class="current_subtask_text"> Create the equation </text>
+        </g>
+        <g onclick="openquanteval()">
+		<polygon id="problem1quantmodel_eval" class="subtask_map"  points="250,250 375,375 500,250" />
+        <text x="310" y="280" class="subtask_text">Examine its</text>
+                   <text x="310" y="300" class="subtask_text">completeness</text>
+        </g>
+        <g onclick="openquantplan()">
+		<polygon id="problem1quantmodel_plan" class="subtask_map"  points="375,375 500,500 500,250" />
+        <text  x="420" y="380" class="subtask_text" >Plan Next <tspan x="420" y="400" class="subtask_text">Steps</tspan></text>
+        </g>
+<g>
+		<polygon id="problem1quantmodel_task4" points="0,0 250,250 250,0" class="task_map" onclick="opencalc()"/>
+		<text x="120" y="80" class="task_text"> Calculation  </text>
+</g>
+<g>
+		<polygon id="problem1quantmodel_task5" points="250,0 500,250 500,0" class="task_map" onclick="openeval()"/>
+		<text x="370" y="80" class="task_text">Evaluation </text>
+</g>
+<g>
+		<text  x="520" y="450" class="current_task_text" transform="rotate(-90 520,450)"> Quantitative Modeling </text>
+		</g>
+		<path id="problem1quantmodel_task3" d="M 250 0 L 250 250 L 500 500 L 500 250 Z" class="current_task_path"/>
+        </svg>
+					</div>
+					<div class="col-lg-6" style="margin-top: 10px;">
+
+						<div style="height:500px;width:550px;border-style: groove;">
+							<div class="medium_margin"> <span class="current_subtask_text"> Make an equation connecting dominant mechanical power required to the dominant parameters. </span> <br> <span class="subtask_text"> You may use the variables given below to guide you.</span> <button style="float:right" class="btn btn-primary" id="problem1quantmodel_guide" type="button">Guide Me</button>
+			  <!-- The Modal -->
+				<div id="problem1quantmodel_modal" class="modal">
+					<!-- Modal content -->
+					<div class="modal-content txt_left">
+					<span class="close">&times;</span>
+					<span class="subtask_text">From the causal map you know the qualitative relationships between the dominant mechanical power and the dominant parameters. <br> <br>
+Use these relationships and the general equation for power to create an equation for power in this problem. Remember that you have to calculate the maximum power required by the car. <br> <br>
+You may want to look at the graphs in the simulator and information page to select suitable values for the constants, if any. 
+ </span><br>
+				</div>
+				</div>
+							</div>
+							<div class="medium_margin txt_left">
+								<table width="100%">
+									<tr>
+										<td>Power (P)</td>
+										<td>Linear Velocity (v)</td>
+										<td>Angular Velocity (w)</td>
+										
+									</tr>
+									<tr>
+										<td>Torque (T)</td>
+										<td>Voltage (V)</td>
+										<td>Current (I)</td>
+										
+									</tr>
+									<tr>
+										<td>Surface Area (A)</td>
+										<td>drag coefficient (Cd)</td>
+										<td>motor constant (km)</td>
+									</tr>
+									<tr>
+										<td>Mass (m)</td>
+										<td>Distance (s)</td>
+										<td>Drag force (Fd)</td>
+										
+									</tr>
+									<tr>
+										<td>Motor Efficiency (eta)</td>
+										<td>Time Taken (t) </td>
+										<td>Acceleration (a)</td>
+										</tr>
+										<tr> 
+										<td> Density (rho)</td>
+										<td>Wheel radius (r)</td>
+										<td>Accelerating force (Fa)</td>
+										<tr>
+								</table>
+								</div>
+							<div class="medium_margin subtask_text">
+               <div class=" medium_margin txt_left">Enter the equation below. </div>
+             <textarea id="question0" rows="10" cols="50" name="question0" >{{answerData.[0]}}
+              </textarea>
+							
+						</div>
+						<!--<div class="row">-->
+						<!--	<div class="col-lg-4 task">-->
+						<!--		Task-->
+						<!--	</div>-->
+						<!--	<div class="col-lg-8 task_text">-->
+						<!--		Quantitative Modeling-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div class="row">-->
+						<!--	<div class="col-lg-4 subtask">-->
+						<!--		Sub-Task <br> 1 of 3-->
+						<!--	</div>-->
+						<!--	<div class="col-lg-8 subtask_text">-->
+						<!--		Create the model: Focus question - "What is the equation connecting power with other parameters?"-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div class="row"> <br> </div>-->
+						<!--<div class="col-lg-12">-->
+						<!--	<div class="row activity">-->
+						<!--		<p style="font-size:12pt;"> To make an equation, you may use the <span style="background-color:#759EB8;color:white;">&nbspnumbers&nbsp</span>, <span style="background-color:#759EB8;color:white;">&nbsprelations&nbsp</span> and <span style="background-color:#426793;color:white;">&nbspvariables &nbsp</span>									below and drag them to the bottom canvas to arrange them into an equation. </p>-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!-- contains the span elements that are made draggable -->
+						
+					</div>
+					 <div class="medium_margin" style="width:550px">
+              <button style="float:right" onclick="openquanteval()" id="problem1quantmodel_next" type="button" class="btn"> Check to see if equation is complete </button>
+					</div>
+				</div>
+			</div>
+	</section>
+</body>
+<!-- <footer style="position: relative; bottom: 0; background: #000;">
+	<p>©2016   IDP in Educational Technology, Indian Institute of Technology Bombay, India</p>
+</footer>
+ -->
+<!-- jQuery library -->
+<script src="/javascripts/vendor/jquery-2.2.1.min.js"></script>
+<script src="/javascripts/vendor/bootstrap.min.js"></script>
+<script src="/javascripts/vendor/common.js"></script>
+
+<!-- drag and drop js -->
+<script src="/javascripts/vendor/jquery-ui.js"></script>
+	<script src="/javascripts/vendor/pnotify.custom.min.js">
+	</script>
+<!-- <script>
+  $( function() {
+    $( "#problem1funcmodel_actions, #problem1funcmodel_dropa" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  } );
+  </script> -->
+<!-- <script>
+  $( function() {
+    $( "#problem1funcmodel_actions,#problem1funcmodel_parts, #problem1funcmodel_dropa, #problem1funcmodel_dropb, #problem1funcmodel_dropc, #problem1funcmodel_dropd" ).sortable();
+    $( "#problem1funcmodel_actions,#problem1funcmodel_parts, #problem1funcmodel_dropa, #problem1funcmodel_dropb, #problem1funcmodel_dropc, #problem1funcmodel_dropd").disableSelection();
+  } );
+  </script>
+ -->
+<script>
+
+ $(document).ready(function () {
+    
+   var count=0;
+var msgs = new Array("From the causal map you know the nature of the relationships between power and dominant parameters. Use your knowledge to write the equations. You may want to look at the graphs in the simulator and information page to select suitable values for the constants.");	
+
+ $("#helper").on( 'click',  function (e) {
+       console.log("Clippy clikced");
+       if(count < 1)
+       var notice = new PNotify({
+    title: 'Help',
+    text: msgs[count++],
+    buttons: {
+        closer: false,
+        sticker: false
+    }
+});
+notice.get().click(function() {
+    notice.remove();
+});
+    } );
+
+
+  
+  $("#question0").focusout(function() {
+    submiQuestion("0",  $("#question0").val());
+  });
+  
+  
+   function submiQuestion(pk,value) {
+      $.post("/api/problem/answer", { pk: pk, pageID: window.location.pathname, value: value })
+        .done(function(data) {
+          if (data.includes("success")) {
+            console.log("Data saved ");
+          }
+          else {
+             console.log("Please try again ");
+          }
+        });
+    }
+  
+  });
+	$("#problem1quantmodel_actions").sortable({
+		connectWith: ".connectedSortable", // problem1quantmodel_actions items are connected to the elements whose class=connectedSortable
+		forcePlaceholderSize: false, //the placeholders do not have a size
+		helper: function(e, li) { //creates a clone of the element and the clone is dragged
+			copyHelper = li.clone().insertAfter(li);
+			return li.clone();
+		},
+		stop: function() { // after the drag event has occured if the copyHelper is still present(not made null as it was not dropped in the dropa div)
+			copyHelper && copyHelper.remove();
+		}
+	});
+	//makes the elements with the class 'connectedSortable' drag-and-droppable
+	$(".connectedSortable").sortable({
+		receive: function(e, ui) { //recive event is triggered when an item from a connected sortable list is dropped into another list
+			// e-event that triggered it; ui-object;
+			copyHelper = null; //the copyHelper value is made null i.e., cannot place the item into a list whose class is not 'connectedSortable'
+		}
+	});
+	$("#problem1quantmodel_dropa").sortable({
+		connectWith: '.sortable', // connects the items in problem1quantmodel_dropa with those elements with class 'sortable'
+	}).droppable({ greedy: true }) //greedy set to true, causes any parent to recieve the draggable element
+
+	$('body').droppable({ // when the draggable element is dropped on the body it is removed
+		drop: function(event, ui) {
+			ui.draggable.remove();
+		}
+	});
+</script>
+
+<!-- ttn: #F3CA40 -->
+<!-- tsk outline: #474F4C -->
+<!-- tsk fill:#ffffff -->
+<!-- current tsk: #157F1F
+current subtsk: #52BF5D -->
+<!-- text background: #426793, #759EB8 -->
+<!-- type="button" class="btn btn-primary" -->
+
+<script>
+	// //the functions open a new window with the respective URL on clicking the corresponding divs/buttons
+	// function openfunc() {
+	//     window.open("problem1funcmodel.html", target="_self");
+	// }
+	//
+</script>
+<script>
+	// function openquanteval() {
+	//     window.open("problem1quanteval.html", target="_self");
+	// }
+	//
+</script>
+<script>
+	// function openquantplan() {
+	//     window.open("problem1quantplan.html", target="_self");
+	// }
+	//
+</script>
+<script>
+	// function openqual() {
+	//     window.open("problem1qualmodel.html", target="_self");
+	// }
+	//
+</script>
+<script>
+	// function openquant() {
+	//     window.open("problem1quantmodel.html", target="_self");
+	// }
+	//
+</script>
+<script>
+	// function opencalc() {
+	//     window.open("problem1calc.html", target="_self");
+	// }
+	//
+</script>
+<script>
+	// function openeval() {
+	//     window.open("problem1eval.html", target="_self");
+	// }
+	//
+</script>
+<script type="text/javascript">
+	//To save the contents of the textarea into a file and download it onto the user's device
+	function saveTextAsFile() {
+		var textToSave = document.getElementById("problem1quantmodel_modeltxt").value;
+		var textToSaveAsBlob = new Blob([textToSave], { type: "text/plain" });
+		var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+		var fileNameToSaveAs = document.getElementById("problem1quantmodel_FileNameToSaveAs").value;
+
+		var downloadLink = document.createElement("a");
+		downloadLink.download = fileNameToSaveAs;
+		downloadLink.innerHTML = "Download File";
+		downloadLink.href = textToSaveAsURL;
+		downloadLink.onclick = destroyClickedElement;
+		downloadLink.style.display = "none";
+		document.body.appendChild(downloadLink);
+
+		downloadLink.click();
+	}
+
+	function destroyClickedElement(event) {
+		document.body.removeChild(event.target);
+	}
+	//loads the file that the user selects into the text area
+	function loadFileAsText() {
+		var fileToLoad = document.getElementById("problem1quantmodel_fileToLoad").files[0];
+
+		var fileReader = new FileReader();
+		fileReader.onload = function(fileLoadedEvent) {
+			var textFromFileLoaded = fileLoadedEvent.target.result;
+			document.getElementById("problem1quantmodel_modeltxt").value = textFromFileLoaded;
+		};
+		fileReader.readAsText(fileToLoad, "UTF-8");
+	}
+	
+	function openfunc() {
+    window.open("/problem/1/tasks/role/functional/model/main", target = "_self");
+  }
+
+  // opens the page when the respective svg is clicked
+  function openfunceval() {
+    window.open("/problem/1/tasks/role/functional/evaluate/check", target = "_self");
+  }
+
+  // opens the page when the respective svg is clicked
+  function openfuncplan() {
+    window.open("/problem/1/tasks/role/functional/plan", target = "_self");
+  }
+
+
+  function openqual() {
+    window.open("/problem/1/tasks/role/qualitative/model", target = "_self");
+  }
+  // opens the document problem1qualmodel in the same frame when the function is called
+
+  function openquant() {
+    window.open("/problem/1/tasks/role/quantitative/model", target = "_self");
+  }
+  // opens the document problem1quantmodel in the same frame when the function is called
+
+  function opencalc() {
+    window.open("/problem/1/tasks/role/calculation/calculation", target = "_self");
+  }
+  // opens the document problem1calc in the same frame when the function is called
+
+  function openeval() {
+    window.open("/problem/1/tasks/role/evaluation/evaluation", target = "_self");
+  }
+
+  function openmap() {
+    window.open("/problem/1/map", target = "_self");
+  }
+
+function openquanteval(){
+  window.open("/problem/1/tasks/role/quantitative/evaluate/check", target = "_self");
+}
+function openqualplan(){
+  window.open("/problem/1/tasks/role/qualitative/plan", target = "_self");
+}
+
+ function openquantplan(){
+ 	 window.open("/problem/1/tasks/role/quantitative/plan", target = "_self");
+ }
+ 
+ // Get the modal
+var modal = document.getElementById('problem1quantmodel_modal');
+
+// Get the button that opens the modal
+var btn = document.getElementById('problem1quantmodel_guide');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>

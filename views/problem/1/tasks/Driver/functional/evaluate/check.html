@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Functional Modeling - MEttLE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+	<link rel="stylesheet" href="/stylesheets/css/style-2.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<script src="/javascripts/vendor/Buttons.js"></script>
+	<script src="/javascripts/vendor/jquery-1.12.0.js"></script>
+	<script src="/javascripts/vendor/bootstrap.min.js"></script>
+	<script src="/javascripts/vendor/jquery-ui.js"></script>
+	<link href="/stylesheets/vendor/bootstrap-editable.css" rel="stylesheet" />
+	<script src="/javascripts/vendor/bootstrap-editable.min.js"></script>
+	<script src="/javascripts/vendor/pnotify.custom.min.js"></script>
+	<link href="/stylesheets/custom/editable-custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+
+</head>
+
+<body>
+	<section id="middlepart">
+		<div class="top-section">
+			<!-- defines the top-section containg the buttons for calculator,simulator,info center, scribble pad and problem map and logout -->
+			<div class="row">
+				<div class="col-sm-1" style="text-align:center;vertical-align:middle" >
+					<div class="hoverable-image" >
+					<img onclick="navigatorinfo()" src="/images/steering-wheel.png" style="max-width:50px;height:auto; margin:12px; filter: invert() drop-shadow(1px 1px 4px rgba(0,0,0,0.4))"/>
+				  </div>
+				</div>
+				<style>
+				  .hoverable-image:hover{
+					opacity: 0.8;
+					cursor: pointer;
+				  }
+		
+				  .hoverable-image:hover::after{
+				  content: "your are currently the driver so you are the one to interact with the page and submit inputs";
+				  display: inline-block;
+				  left: 0px;
+				  top: 0px;
+				  padding: 5px;
+				  background-color: black;
+				  color: white;
+				  }
+				</style>
+				<div class="col-sm-6" style="text-align:center;vertical-align:middle">
+				  <p>MEttLE</p>
+				</div>
+				<g onclick="sendSimulatorLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_sim" type="image" src="/images/simulator.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+
+				<g onclick="sendInformationLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_info" type="image" src="/images/info.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+
+				<g onclick="sendScratchLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_scribble" type="image" src="/images/scribble.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+
+				<g onclick="sendProblemMapLog()">
+					<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+						<input id="problem1funcmodel_map" type="image" src="/images/map.png"
+							style="width:110px;height:67px;" />
+					</div>
+				</g>
+				<div class="col-sm-1" style="text-align:center"> <button id="problem1funcmodel_logout"
+						style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default"
+						onclick="sel_logout()">Logout</button></div>
+			</div>
+		</div>
+
+		<div class="register">
+			<div class="info">
+				<div class="row" style="text-align:center">
+					<div class="col-lg-8">
+						<p style="padding-left:100px;text-align:left">What does the car need to do that requires power?
+						</p>
+					</div>
+					<div class="col-lg-4">
+						<g onclick="sendprobsmtlog()"><a id="menuTrigger" class="dropdown-toggle"
+								data-toggle="dropdown">Problem Statement</a></g>
+						<div id="myMenu">
+							You are participating in an electric car race in which you are required to design an
+							electric car of weight 5kg with wheel diameters of 4” that can traverse a track of 50m in
+							less than 5 seconds. <br>Estimate the electrical power needed to achieve this performance.
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="container-fluid">
+				<div class="row activity" style="text-align:center">
+					<div class="col-lg-6">
+						<!-- To draw the box containing the various tasks and to navigate to any sub-task by clicking on it -->
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px"
+							viewBox="-30 -30 550 550" xml:space="preserve">
+							<g onclick="openfuncmodel()">
+								<polygon id="problem1funcevalcheck_create" points="0,250 0,500 125,375"
+									class="subtask_map" />
+								<text x="10" y="375" class="subtask_text">Identify
+									<tspan x="10" y="395"> all actions </tspan>
+								</text>
+							</g>
+							<g onclick="openfunceval()">
+								<polygon id="problem1funcevalcheck_eval" points="0,500 125,375 130,500"
+									class="current_subtask_map" />
+								<text x="55" y="450" class="current_subtask_text">Identify
+									<tspan x="50" y="470"> dominant </tspan>
+									<tspan x="50" y="490"> actions </tspan>
+								</text>
+							</g>
+							<g onclick="openfuncplan()">
+								<polygon id="problem1funcevalcheck_plan" points="125,375 125,500 250,500"
+									class="subtask_map" />
+								<text x="150" y="450" class="subtask_text">Plan
+									<tspan x="150" y="470"> Next </tspan>
+									<tspan x="150" y="490"> Steps</tspan>
+								</text>
+							</g>
+							<g onclick="openqual()">
+								<polygon class="task_map" id="problem1funcevalcheck_task2"
+									points="0,0 0,250 250,500 500,500"></polygon>
+								<text class="task_text" x="80" y="300">
+									Qualitative Modeling
+								</text>
+							</g>
+							<g onclick="openquant()">
+								<polygon class="task_map" id="problem1funcevalcheck_task3"
+									points="250,0 250,250 500,500 500,250"></polygon>
+								<text class="task_text" x="280" y="250">
+									Quantitative Modeling
+								</text>
+							</g>
+							<g onclick="opencalc()">
+								<polygon class="task_map" id="problem1funcevalcheck_task4" points="0,0 250,250 250,0">
+								</polygon>
+								<text class="task_text" x="120" y="80">
+									Calculation
+								</text>
+							</g>
+							<g onclick="openeval()">
+								<polygon class="task_map" id="problem1funcevalcheck_task5" points="250,0 500,250 500,0">
+								</polygon>
+								<text class="task_text" x="370" y="80">
+									Evaluation
+								</text>
+							</g>
+							<g onclick="openfuncmodel()">
+								<text class="current_task_text" transform="rotate(-90 -10,500)" x="-10" y="500">
+									Functional Modeling
+								</text>
+								<path id="problem1funcevalcheck_task1" d="M 0,250 L 0,500 L 250,500 Z"
+									class="current_task_path" />
+							</g>
+						</svg>
+					</div>
+					<div class="col-lg-6" style="margin-top:30px;">
+						<div style="height:450px;width:550px;border-style:groove;">
+							<div class="row">
+								<div class="col-lg-12">
+									<span class="subtask_text"> These are the actions that you identified </span>
+									<div id="pre_txt" class="medium_margin rcorners">
+
+									</div>
+									<div class="medium_margin" style="text-align:left">
+										<span class="task_text_eg"> The operating conditions of the car are the
+											acceleration required and maximum velocity attained, as determined from the
+											problem specifications (using the equations of motion). </span> <br><br>
+										<span class="subtask_text"> 1. What is the acceleration required from the car?
+											<br>
+											<textarea id="question0" rows="1" cols="20"
+												name="question0">{{answerData.[0]}} </textarea> <br>
+											2. What is the maximum velocity attained by the car? <br>
+											<textarea id="question1" rows="1" cols="20"
+												name="question1">{{answerData.[1]}} </textarea> <br> <br>
+											3. Which of these actions does your list of actions include? <br> a)
+											Accelerating over the entire track <br> b) Overcoming drag over the entire
+											track </span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="medium_margin subtask_text" style="width:550px">
+							<g onclick="clickIncludedOneButton()"><button style="float:right" class="btn"
+									id="problem1funcevalcheck_fail" type="button">Included one or neither of these
+									actions</button> </g>
+							<button style="float:left" onclick="openfuncmodel();" class="btn btn-info"
+								id="problem1funcevalcheck_back" type="button">Go back to identify actions</button>
+							<br><br>
+							<button style="float:right" onclick="openfuncdom();" class="btn"
+								id="problem1funcevalcheck_pass" type="button">Included both these actions</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- The guidance Modal -->
+	<div id="problem1funcevalcheck_modal" class="modal" tabindex="-1" data-backdrop="false">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<span class="subtask_text"> Go back and revise your list. <br> You may want to look at the Simulator to
+				understand what the car needs to do that requires power. </span><br>
+			<button style="float:centre" onclick="openfuncprompts();" class="btn btn-primary"
+				id="problem1funcevalcheck_prompts" type="button">Guide Me</button> <br>
+		</div>
+	</div>
+	<!-- modal for explanation -->
+	<div aria-hidden="true" class="modal fade" data-backdrop="false" id="ExplnModal" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-heading">
+					<button disabled type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h2 class="modal-title">Discuss with your partner while they type the answer to the question below</h2>
+				</div>
+				<div class=" medium_margin"> What were you thinking as you solved that step and what did you learn?
+				</div>
+				<div style="margin:20px"><textarea disabled id="explain0" class="form-control input-large "
+						rows="5">{{answerData.[2]}}</textarea>
+				</div>
+				<div class="modal-body" style="float:center">
+					<button disabled type="button" class="btn btn-primary" onclick="logRecordAndJump(desturl)">Continue</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+
+
+<script>
+	var socket = io('http://10.68.6.172:8080');
+	var name = "{{ sessionName }}";
+	//window.onclose = socket.emit('Driver-close-window',{text:name});
+	// open problem statement
+	mnuOut = false;
+	$('#menuTrigger').click(function () {
+		if (mnuOut) {
+			//Menu is visible, so HIDE menu
+			$('#myMenu').animate({
+				right: '-200px'
+			}, 800);
+			mnuOut = false;
+		} else {
+			//Menu is hidden, so SHOW menu
+			$('#myMenu').animate({
+				right: 0
+			}, 800);
+			mnuOut = true;
+		}
+	})
+
+	var windows = [];
+	var bc = new BroadcastChannel('logoff_channel');
+	bc.onmessage = function (event) {
+		if (event.data == 'logoff') {
+			sel_logout();
+		}
+	}
+
+	window.onbeforeunload = function(){
+	for(var i = 0; i < windows.length; i++){
+    windows[i].close()
+  }
+}
+
+	//get action list from model page
+	$.get("/api/problem/answer", {
+			pageID: "/problem/1/tasks/role/functional/model/main",
+			questionID: 0
+		})
+		.done(function (data) {
+			//alert( "Data Loaded: " + JSON.parse(data));
+			$("#pre_txt").html(JSON.parse(data)[0]);
+		});
+
+	// post evaluation question answers to database
+	$("#question0").focusout(function () {
+		submiQuestion("0", $("#question0").val());
+	});
+	$("#question1").focusout(function () {
+		submiQuestion("1", $("#question1").val());
+	});
+
+	$("#question0").keyup(function() { 
+		socket.emit('Driver-func-eval-check-q0', {
+			  content: $("#question0").val(),
+			  text: name
+			});
+		});
+
+	$("#question1").keyup(function() { 
+		socket.emit('Driver-func-eval-check-q1', {
+				content: $("#question1").val(),
+				text: name
+			});
+		});
+
+	function submiQuestion(pk, value) {
+		$.post("/api/problem/answer", {
+				pk: pk,
+				pageID: window.location.pathname,
+				value: value
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//("Data saved " + data);
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+
+	// Get the modal
+	var modal = document.getElementById('problem1funcevalcheck_modal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("problem1funcevalcheck_fail");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function () {
+		socket.emit('Driver-func-fail-btn',{text:name});
+		modal.style.display = "block";
+		logRecord("problem1funcevalcheck_guideme")
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function () {
+		socket.emit('Driver-func-fail-close',{text:name});
+		modal.style.display = "none";
+		logRecord("problem1funcevalcheck_closeguideme")
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function (event) {
+		if (event.target == modal) {
+			socket.emit('Driver-func-fail-close',{text:name});
+			modal.style.display = "none";
+			logRecord("problem1funcevalcheck_closeguideme")
+		}
+	}
+
+	//automatically save and share explanation
+	$("#explain0").keyup(function () {
+		socket.emit('Driver-submit-question', {
+			content: $("#explain0").val(),
+			text: name
+		});
+	});
+
+	//automatically save and share explanation
+	$("#explain0").focusout(function () {
+		submiQuestion("2", $("#explain0").val());
+	});
+
+	var desturl = " ";
+
+	function explanation(url) {
+		$('#ExplnModal').modal("show");
+		desturl = url;
+	}
+
+	function openfuncmodel() {
+		socket.emit('Driver-func-model',{text:name});
+		explanation("/problem/1/tasks/role/functional/model/main")
+	}
+
+	/*
+	function openfunceval() {
+		socket.emit('Driver-func-eval');
+		logRecordAndJump("/problem/1/tasks/role/functional/evaluate/check")
+	}
+	*/
+
+	function openfuncprompts() {
+		socket.emit('Driver-func-prompt',{text:name});
+		explanation("/problem/1/tasks/role/functional/model/prompts")
+	}
+
+	function openfuncdom() {
+		socket.emit('Driver-func-dom',{text:name});
+		explanation("/problem/1/tasks/role/functional/evaluate/dominant")
+	}
+
+	function openfuncplan() {
+		socket.emit('Driver-func-plan',{text:name});
+		explanation("/problem/1/tasks/role/functional/plan")
+	}
+
+	function openqual() {
+		socket.emit('Driver-qual',{text:name});
+		explanation("/problem/1/tasks/role/qualitative/model")
+	}
+
+	function openquant() {
+		socket.emit('Driver-quant',{text:name});
+		explanation("/problem/1/tasks/role/quantitative/model")
+	}
+
+
+	function opencalc() {
+		socket.emit('Driver-calc',{text:name});
+		explanation("/problem/1/tasks/role/calculation/calculation")
+	}
+	
+	function openeval() {
+		socket.emit('Driver-eval',{text:name});
+		explanation("/problem/1/tasks/role/evaluation/evaluation")
+	}
+
+	function sendSimulatorLog() {
+		socket.emit('Driver-simulator',{text:name});
+		windows.push(window.open("/problem/1/tasks/Driver/simulator", '_blank'));
+		logRecord('/simulator');
+	  }
+	
+	  function sendInformationLog() {
+		socket.emit('Driver-information',{text:name});
+		windows.push(window.open("/problem/1/tasks/Driver/information", '_blank'));
+		logRecord('/Information')
+	  }
+	
+	  function sendScratchLog() {
+		socket.emit('Driver-scratch',{text:name});
+		windows.push(window.open("/problem/1/tasks/Driver/scribble", '_blank'));
+		logRecord('/scribble')
+	  }
+	
+	  function sendProblemMapLog() {
+		socket.emit('Driver-problem-map',{text:name});
+		windows.push(window.open("/problem/1/tasks/Driver/aboutproblem", '_blank'));
+		logRecord('/Problem_Map')
+	  }
+	
+	  function sel_logout() {
+		socket.emit('Driver-logout',{text:name});
+		for (var i = 0; i < windows.length; i++) {
+		  windows[i].close()
+		}
+		logRecord('/Logout');
+		window.open("/logout", '_self');
+	  }
+	
+	  function sendprobsmtlog() {
+		socket.emit('Driver-problem-log',{text:name});
+		logRecord('View_prob_smt');
+	  }
+
+	function clickIncludedOneButton() {
+		socket.emit('Driver-func-fail',{text:name});
+		logRecord("problem1funcevalcheck_fail")
+	}
+
+	function logRecordAndJump(urlString){
+	$.post("/api/problem/log", {pageID: window.location.pathname, value: urlString })
+          .done(function(data) {
+            if (data.includes("success")) {
+              //console.log("Data saved ");
+			  window.open(urlString.replace("role",JSON.parse(data).role), target = "_self");
+            }
+            else {
+              //console.log("Please try again ");
+            }
+          });
+}
+
+	function logRecordAndOpen(urlString) {
+		$.post("/api/problem/log", {
+				pageID: window.location.pathname,
+				value: urlString
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//console.log("Data saved ");
+					window.open(urlString, target = "_blank");
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+
+	function logRecord(urlString) {
+		$.post("/api/problem/log", {
+				pageID: window.location.pathname,
+				value: urlString
+			})
+			.done(function (data) {
+				if (data.includes("success")) {
+					//console.log("Data saved ");
+				} else {
+					//console.log("Please try again ");
+				}
+			});
+	}
+	socket.on('open', function (message) {
+  switch (message.content) {
+   case 'Navigator-next':
+      //console.log(message.nexturl);
+      if (message.sessname == name)
+        logRecordAndJump(message.nexturl);
+      break;
+  case 'Navigator-submit-question':
+      if (message.sessname == name)
+        $('#explain0').val(message.expln);
+      break;
+        }
+      });
+</script>
