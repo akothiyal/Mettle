@@ -1,12 +1,11 @@
 # MEttLE
-Temporary Working Repository of MEttLE during the summer of 2017
+Temporary Working Repository of MEttLE during the summer of 2022
 
 # Usage
  - install node (latest)
  - install mongodb(use default port)
  - start mongodb service
  - clone this repository 
- - `git clone https://github.com/rohinrohin/MEttLE`
  - `cd MEttLE` 
  - `npm install`
 - node bin/www
