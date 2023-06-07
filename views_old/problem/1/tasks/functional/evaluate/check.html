@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Functional Modeling - MEttLE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+  <link rel="stylesheet" href="/stylesheets/css/style-2.css">
+  <script src="/javascripts/vendor/go.js"></script>
+  <script src="/javascripts/vendor/Buttons.js"></script>
+
+  <script src="/javascripts/vendor/jquery-1.12.0.js"></script>
+  <script src="/javascripts/vendor/bootstrap.min.js"></script>
+  <script src="/javascripts/vendor/jquery-ui.js"></script>
+
+  <link href="/stylesheets/vendor/bootstrap-editable.css" rel="stylesheet" />
+  <script src="/javascripts/vendor/bootstrap-editable.min.js"></script>
+<script src="/javascripts/vendor/pnotify.custom.min.js">
+	</script>
+	
+  <link href="/stylesheets/custom/editable-custom.css" rel="stylesheet">
+<link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/stylesheets/custom/editable-custom.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script> -->
+</head>
+
+<section id="middlepart">
+  <div class="top-section">
+    <!-- defines the top-section containg the buttons for calculator,simulator,info center, scribble pad and problem map and logout -->
+    <div class="row">
+      <div class="col-sm-6" style="text-align:center;vertical-align:middle">
+        <p>MEttLE</p>
+      </div>
+      <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+        <div style="width:550px">
+              
+            </div><a href="/simulator" target="_blank"><input id="problem1funcevalcheck_sim" type="image" src="/images/simulator.png" style="width:110px;height:67px;"/></a>
+      </div>
+      <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+        <a href="/calculator" target="_blank"><input id="problem1funcevalcheck_calc" type="image" src="/images/calc.png" style="width:110px;height:67px;"/></a>
+      </div>
+      <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+        <a href="/information" target="_blank"><input id="problem1funcevalcheck_info" type="image" src="/images/info.png" style="width:110px;height:67px;"/></a>
+      </div>
+      <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+        <a href="/scratch" target="_blank"><input  id="problem1funcevalcheck_scribble"type="image" src="/images/scribble.png" style="width:110px;height:67px;"/></a>
+      </div>
+      <div class="col-sm-1" style="text-align:center;vertical-align:middle">
+        <a href="../../../map" target="_blank"><input id="problem1funcevalcheck_map" type="image" src="/images/map.png" style="width:110px;height:67px;"/></a>
+      </div>
+      <!-- In the above 12 lines images are being used for the various options and they are made to look like buttons and the anchor tag is added to load the appropriate pages-->
+      <div class="col-sm-1" style="text-align:center"> <a href="/logout"><button id="problem1funcevalcheck_logout" style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default">Logout</button></a></div>
+    </div>
+  </div>
+  <div class="register">
+      <div class="info">
+        <div class="row" style="text-align:center">
+				<div class="col-lg-8">
+					<p style="padding-left:100px;text-align:left">What does the car need to do that requires power? 
+</p>
+					</div>
+						<!-- <div class="col-lg-4">
+							<div style="float:right"> <img id="helper" src="/images/help.png" width="30px"></img></div>
+					</div> -->
+					</div>
+       
+      </div>
+    <div class="container-fluid">
+      <div class="row activity" style="text-align:center">
+        <div class="col-lg-6">
+          <!-- To draw the box containing the various tasks and to navigate to any sub-task by clicking on it -->
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px" viewBox="-30 -10 550 550" xml:space="preserve">
+            <g onclick="openfuncmodel()">
+            <polygon id="problem1funcevalcheck_create" points="0,250 0,500 125,375"  class="subtask_map" />
+            <text x="10" y="375" class="subtask_text">Identify
+              <tspan x="10" y="395"> all actions </tspan>
+            </text>
+            </g>
+            <g onclick="openfunceval()">
+            <polygon id="problem1funcevalcheck_eval" points="0,500 125,375 130,500"  class="current_subtask_map" />
+            <text x="55" y="450" class="current_subtask_text">Identify
+			<tspan x="50" y="470"> dominant </tspan>
+              <tspan x="50" y="490"> actions </tspan>
+            </text>
+            </g>
+            <g onclick="openfuncplan()">
+            <polygon id="problem1funcevalcheck_plan" points="125,375 125,500 250,500"  class="subtask_map" />
+            <text x="150" y="450" class="subtask_text">Plan
+              <tspan x="150" y="470"> Next </tspan>
+              <tspan x="150" y="490"> Steps</tspan>
+            </text>
+</g>
+ <g onclick="openqual()">
+              <polygon class="task_map" id="problem1funcevalcheck_task2"  points="0,0 0,250 250,500 500,500"></polygon>
+              <text class="task_text" x="80" y="300">
+                Qualitative Modeling
+              </text>
+              </g>
+              <g onclick="openquant()">
+              <polygon class="task_map" id="problem1funcevalcheck_task3"  points="250,0 250,250 500,500 500,250"></polygon>
+              <text class="task_text" x="280" y="250">
+                Quantitative Modeling
+              </text>
+              </g>
+              <g onclick="opencalc()">
+              <polygon class="task_map" id="problem1funcevalcheck_task4"  points="0,0 250,250 250,0"></polygon>
+              <text class="task_text" x="120" y="80">
+                Calculation
+              </text>
+              </g>
+              <g onclick="openeval()">
+              <polygon class="task_map" id="problem1funcevalcheck_task5"  points="250,0 500,250 500,0"></polygon>
+              <text class="task_text" x="370" y="80">
+                Evaluation
+              </text>
+              </g>
+              <g>
+              <text class="current_task_text" transform="rotate(-90 -10,500)" x="-10" y="500">
+                Functional Modeling
+              </text>
+              </g>            <path id="problem1funcevalcheck_task1" d="M 0,250 L 0,500 L 250,500 Z" class="current_task_path" />
+          </svg>
+        </div>
+        <div class="col-lg-6" style="margin-top:10px;">
+		<div style="height:430px;width:550px;border-style:groove;">
+		<div class="row">
+          <div class="col-lg-12">
+          <span class = "subtask_text"> These are the actions that you identified </span>
+            <div id="pre_txt" class="medium_margin rcorners">
+              
+            </div>
+            <div class="medium_margin" style="text-align:left">
+             <span class="task_text_eg"> The operating conditions of the car are the acceleration required and maximum velocity attained, as determined from the problem specifications (using the equations of motion). </span> <br>
+			  <span class="subtask_text"> 1. What is the acceleration required from the car? <br> 
+			  <textarea id="question0" rows="1" cols="20" name="question0">
+              </textarea> <br>
+			  2. What is the maximum velocity attained by the car? <br> 
+			  <textarea id="question1" rows="1" cols="20" name="question1">
+              </textarea> <br> <br>
+			  3. Does your list of actions that require power include <br> a) Accelerating over the entire track <br> b) Overcoming drag over the entire track </span>
+             <!-- <textarea id="question0" rows="4" cols="50" name="question0" >{{answerData.[0]}}
+              </textarea> -->
+            </div>
+			</div>
+			</div>
+			</div>
+             <div class="medium_margin subtask_text" style="width:550px">
+               <!-- <div class=" medium_margin txt_left">Identify and justify which of these actions of the car dominates its power requirements.</div>
+             <textarea id="question1" rows="4" cols="50" name="question1" >{{answerData.[1]}}
+              </textarea>
+            </div>
+ -->            
+				<button style="float:right" class="btn" id="problem1funcevalcheck_fail" type="button">Included one or neither of these actions</button> 
+				<!-- The Modal -->
+				<div id="problem1funcevalcheck_modal" class="modal">
+					<!-- Modal content -->
+					<div class="modal-content">
+					<span class="close">&times;</span>
+					<span class="subtask_text"> Go back and revise your list. <br> You may want to look at the Simulator to understand what the car needs to do that requires power. </span><br>
+					<button style="float:centre" onclick="openfuncprompts();" class="btn btn-primary" id="problem1funcevalcheck_prompts" type="button">Guide Me</button> <br>
+				</div>
+				</div>
+				<button style="float:left" onclick="openfuncmodel();" class="btn btn-info" id="problem1funcevalcheck_back" type="button">Go back to identify actions</button> 
+				<br><br> 
+			<button style="float:right" onclick="openfuncdom();" class="btn" id="problem1funcevalcheck_pass" type="button">Included both these actions</button>
+			</div>
+                   
+         
+         
+          <!-- <div id="problem1funceval_2" class="row activity" style="visibility:hidden"> -->
+          <!--  <div class="problem-wrapper">-->
+              <!-- <a id="problem1funceval_justify" href="https://goo.gl/forms/3uCN6vl9A7slKldK2" target="_blank"> <span style="font-weight:bold;"> here </span> </a>: -->
+          <!--    <div style="margin: 18px 35px; font-size:1.2em!important;">-->
+          <!--      <div class="question-wrap" style="margin-top:13px;">-->
+          <!--        <div class="question" style="font-size:1.2em!important;margin-bottom:0">1. Justify your response; "What is the source and user of power according to your model?"</div>-->
+          <!--        <div class="answer" style="margin: 5px 35px; font-size:1.2em!important;">-->
+          <!--          <a class="text-area-editable" style="padding-left: 10px;padding-right: 10px;" id="problem0" data-type="textarea">{{answerData.[0]}}</a>-->
+          <!--        </div>-->
+          <!--      </div>-->
+          <!--    </div>-->
+          <!--    <div class="row" style="text-align:center" id="problem1funceval_hint" onclick='document.getElementById("problem1funceval_hintans").style.visibility = "visible"'><input type="image" src="/images/hintwndctive.png" style="width:120px;height:70px;" />-->
+          <!--    </div>-->
+          <!--  </div>-->
+
+            <!-- on clicking the div the hintans div becomes visible -->
+          <!--</div>-->
+        <!-- </div> -->
+        <!--<div id="problem1funceval_hintans" class="row activity" style="visibility:hidden;font-size:12pt;text-align:center">-->
+          <!-- <p style="font-size:12pt;"> Look at the <a id="problem1funceval_look" href="https://goo.gl/forms/2S7sgmPwBISOcTzT2"> <span style="font-weight:bold;"> model </span> </a> you created again. </p> -->
+        <!--  See your saved model <br>-->
+        <!--  <textarea id="problem1funceval_modeltxt" name="model" rows="3" cols="80"></textarea></br>-->
+        <!--  <input type="file" id="problem1funceval_fileToLoad">-->
+        <!--  <button onclick="loadFileAsText()">Load Selected File</button> <br>-->
+        <!--</div>-->
+        <!--<div class="row activity">-->
+        <!--  <button onclick="openfuncplan();" id="problem1funceval_next" type="button" class="btn btn-info"> Plan your next steps </button>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function () {
+    
+    var count=0;
+var msgs = new Array("The limits of the cars' performance when its running will decide which action dominates power. Think of the operating conditions given in the problem. What dictates power in those conditions? For instance, for the given acceleration and track length, which of the action dominates, accelerating or overcoming drag? In other word, is most of the power needed for accelerating or overcoming drag?",
+"At what point in the track will the maximum power be needed? While estimating, would you determine the maximum, average or instantaneous power? Why?","If you are unable to answer these questions you may want to look at the simulator.");	
+
+ $("#helper").on( 'click',  function (e) {
+       console.log("Clippy clikced");
+       if(count < 3)
+       var notice = new PNotify({
+    title: 'Help',
+    text: msgs[count++],
+    buttons: {
+        closer: false,
+        sticker: false
+    }
+});
+notice.get().click(function() {
+    notice.remove();
+});
+ });    
+
+$.get( "/api/problem/answer", { pageID: "/problem/1/tasks/role/functional/model" } )
+  .done(function( data ) {
+  //  alert( "Data Loaded: " + data );
+    $("#pre_txt").html(JSON.parse(data)[0]);
+  });
+  
+  $("#question0").focusout(function() {
+    submiQuestion("0",  $("#question0").val());
+  });
+  $("#question1").focusout(function() {
+    focus++;
+    console.log( "focusout fired: " +  $("#question1").val() + "x" );
+    submiQuestion("1", $("#question1").val());
+  });
+  
+  
+   function submiQuestion(pk,value) {
+      $.post("/api/problem/answer", { pk: pk, pageID: window.location.pathname, value: value })
+        .done(function(data) {
+          if (data.includes("success")) {
+            console.log("Data saved ");
+          }
+          else {
+             console.log("Please try again ");
+          }
+        });
+    }
+    // $.fn.editable.defaults.mode = 'inline';
+    // $('#problem0').editable({
+    //   inputClass: 'text-area-css',
+    //   name: 'generic',
+    //   type: 'text',
+    //   pk: 0,
+    //   url: '/api/problem/answer',
+    //   title: 'Enter username',
+    //   showbuttons: 'bottom',
+    //   rows: '5',
+    //   emptytext: 'click here to justify',
+    //   params: {
+    //     pageID: window.location.pathname,
+    //   },
+    //   success: function (response, newValue) {
+    //     response = JSON.parse(response);
+    //     console.log("editable: " + response.status);
+    //     if (response.status == 'error') {
+    //       return response.message;
+    //     } else if (response.status == 'redirect') {
+    //       console.log('here');
+    //       window.location.replace('/');
+    //     }
+    //   },
+    // });
+  });
+</script>
+
+
+<script>
+   // Get the modal
+var modal = document.getElementById('problem1funcevalcheck_modal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("problem1funcevalcheck_fail");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+  // When the user clicks on div, open the popup
+  function myFunction() {
+    var popup = document.getElementById('funcevalfail');
+    popup.classList.toggle('show'); // cahnges the class of the div to show
+    document.getElementById("problem1funceval_create").style.fill = "#F3CA40"; //changes the background color of the polygon
+  }
+
+  function hidedetils() {
+    document.getElementById("func_desc").style.visibility = "hidden"
+    document.getElementById("func_desc_hint").style.visibility = "hidden";
+  }
+
+  function loadFileAsText() { // Loads the file specified and displays it in the div problem1funceval_modeltxt
+    var fileToLoad = document.getElementById("problem1funceval_fileToLoad").files[0];
+
+    var fileReader = new FileReader();
+    fileReader.onload = function (fileLoadedEvent) {
+      var textFromFileLoaded = fileLoadedEvent.target.result;
+      document.getElementById("problem1funceval_modeltxt").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+  }
+
+  //to open the html page in a new window when the svg element is clicked
+  function openfuncmodel() {
+    window.open("/problem/1/tasks/role/functional/model/main", target = "_self");
+  }
+  
+  // opens the page to identify dominant actions
+  function openfuncprompts() {
+    window.open("/problem/1/tasks/role/functional/model/prompts", target = "_self");
+  }
+
+
+  // opens the page when the respective svg is clicked
+  function openfunceval() {
+    window.open("/problem/1/tasks/role/functional/evaluate/check", target = "_self");
+  }
+  // opens the page to identify dominant actions
+  function openfuncdom() {
+    window.open("/problem/1/tasks/role/functional/evaluate/dominant", target = "_self");
+  }
+
+
+  // opens the page when the respective svg is clicked
+  function openfuncplan() {
+    window.open("/problem/1/tasks/role/functional/plan", target = "_self");
+  }
+
+
+  function openqual() {
+    window.open("/problem/1/tasks/role/qualitative/model", target = "_self");
+  }
+  // opens the document problem1qualmodel in the same frame when the function is called
+
+  function openquant() {
+    window.open("/problem/1/tasks/role/quantitative/model", target = "_self");
+  }
+  // opens the document problem1quantmodel in the same frame when the function is called
+
+  function opencalc() {
+    window.open("/problem/1/tasks/role/calculation/calculation", target = "_self");
+  }
+  // opens the document problem1calc in the same frame when the function is called
+
+  function openeval() {
+    window.open("/problem/1/tasks/role/evaluation/evaluation", target = "_self");
+  }
+
+  function openmap() {
+    window.open("/problem/1/map", target = "_self");
+  }
+</script>

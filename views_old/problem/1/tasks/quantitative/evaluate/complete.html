@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Quantitative Modeling - MEttLE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+    <link rel="stylesheet" href="/stylesheets/css/style-2.css">
+	<script src="/javascripts/vendor/go.js"></script>
+	<script src="/javascripts/vendor/Buttons.js"></script>
+	<link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+</head>
+
+<section id="middlepart">
+	<div class="top-section">
+		<!-- Navigation bar containg calculator,simulator info centre,etc -->
+		<div class="row">
+			<div class="col-sm-6" style="text-align:center;vertical-align:middle">
+				<p>MEttLE</p>
+			</div>
+			<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/simulator" target="_blank"><input id="problem1quantevalcomp_sim" type="image" src="/images/simulator.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/calculator" target="_blank"><input id="problem1quantevalcomp_calc" type="image" src="/images/calc.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/information" target="_blank"><input id="problem1quantevalcomp_info" type="image" src="/images/info.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="/scratch" target="_blank"><input  id="problem1quantevalcomp_scribble"type="image" src="/images/scribble.png" style="width:110px;height:67px;"/></a>
+		</div>
+		<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+		<a href="../../../map" target="_blank"><input id="problem1quantevalcomp_map" type="image" src="/images/map.png" style="width:110px;height:67px;"/></a></div>
+		<div class="col-sm-1" style="text-align:center"> <a href="/logout"><button id="problem1quantevalcomp_logout" style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default">Logout</button></a></div>
+		</div>
+		</div>
+		<div class="register">
+			<div class="info">
+					<div class="row" style="text-align:center">
+				<div class="col-lg-8">
+					<p style="padding-left:100px;text-align:left">What is equation connecting electric power required to the dominant parameters?
+ </p>
+					</div>
+						<!-- <div class="col-lg-4">
+							<div style="float:right"> <img id="helper" src="/images/help.png" width="30px"></img></div>
+					</div> -->
+					</div>
+			
+			</div>
+			<div class="container-fluid">
+				<div class="row activity" style="text-align:center">
+					<div class="col-lg-6">
+						<!-- To draw the box containing the various tasks and to navigate to any sub-task by clicking on it -->
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px" viewBox="-30 -10 550 550" xml:space="preserve">
+
+		<g onclick="openfunc()">
+              <polygon id="problem1quantevalcomp_task1"  points="0,250 0,500 250,500" class="task_map" />
+              <text x="5" y="450" class="task_text"> Functional Modeling</text>
+              </g>
+<g onclick="openqual()">
+		<polygon id="problem1quantevalcomp_task2" points="0,0 0,250 250,500 500,500"  class="task_map"/>
+		<text  x="80" y="300" class="task_text"> Qualitative Modeling </text>
+</g>
+<g onclick="openquant()">
+		<polygon id="problem1quantevalcomp_create" class="subtask_map"  points="250,0 250,250 500,250" />
+        <text  x="260" y="200" class="subtask_text"> Create the equation </text>
+        </g>
+        <g onclick="openqualeval()">
+		<polygon id="problem1quantevalcomp_eval" class="current_subtask_map"  points="250,250 375,375 500,250" />
+        <text x="310" y="280" class="current_subtask_text">Examine its</text>
+                   <text x="310" y="300" class="current_subtask_text">completeness</text>
+        </g>
+        <g onclick="openquantplan()">
+		<polygon id="problem1quantevalcomp_plan" class="subtask_map"  points="375,375 500,500 500,250" />
+        <text  x="420" y="380" class="subtask_text" >Plan Next <tspan x="420" y="400" class="subtask_text">Steps</tspan></text>
+        </g>
+<g>
+		<polygon id="problem1quantevalcomp_task4" points="0,0 250,250 250,0" class="task_map" onclick="opencalc()"/>
+		<text x="120" y="80" class="task_text"> Calculation  </text>
+</g>
+<g>
+		<polygon id="problem1quantevalcomp_task5" points="250,0 500,250 500,0" class="task_map" onclick="openeval()"/>
+		<text x="370" y="80" class="task_text">Evaluation </text>
+</g>
+<g>
+		<text  x="520" y="450" class="current_task_text" transform="rotate(-90 520,450)"> Quantitative Modeling </text>
+		</g>
+		<path id="problem1quantevalcomp_task3" d="M 250 0 L 250 250 L 500 500 L 500 250 Z" class="current_task_path"/>
+        </svg>
+					</div>
+					<div class="col-lg-6" style="margin-top: 10px;">
+
+						<div class="subtask_text" style="height:450px;width:550px;border-style: groove;">
+						The equation for electric power you created is
+
+							<div class="medium_margin subtask_text txt_left">
+							<!-- load data from quantitative/evaluate/check/question2 -->
+								<div id="pre_txt" class="medium_margin rcorners">
+              
+            </div>
+								<table id="t01" width="90%">
+									<tr  >
+										<td valign="top" >1)</td>
+										<td>Are all quantities except power known or can be looked up or calculated? </td>
+									</tr> <tr> <td> </td> <td> <div class="popup"> <button style="float:right" onclick="openq1yes()" class="btn btn-warning" id="problem1quantevalcomp_q1yesbtn" type="button">Yes</button> <span class="popuptextsmall" id="problem1quantevalcomp_q1yes">Great! Move Ahead.</span></div> <br> <br></td>
+			<td> <div class="popup"> <button style="float:left" onclick="openq1no()" class="btn btn-warning" id="problem1quantevalcomp_q1nobtn" type="button">No</button> <span class="popuptextsmall" id="problem1quantevalcomp_q1no">Check your equation. Try to rewrite power in terms of known parameters so you can calculate easily.
+</span></div> <br> <br>
+</td>
+									</tr>
+									<tr >
+										<td class="tr_style" valign="top">2)</td>
+										<td class="tr_style">Do the dimensions on both sides of the equation match?</td>
+									</tr> <tr> <td> </td> <td> <div class="popup"> <button style="float:right" onclick="openq2yes()" class="btn btn-warning" id="problem1quantevalcomp_q2yesbtn" type="button">Yes</button> <span class="popuptextsmall" id="problem1quantevalcomp_q2yes">Great! Move Ahead.</span></div> <br> <br> </td>
+			<td> <div class="popup"> <button style="float:left" onclick="openq2no()" class="btn btn-warning" id="problem1quantevalcomp_q2nobtn" type="button">No</button> <span class="popuptextsmall" id="problem1quantevalcomp_q2no">Check your equation. Are you missing any parameters?
+</span></div> <br> <br>
+</td>
+									</tr>
+									<tr>
+										<td class="tr_style" valign="top">3)</td>
+										<td class="tr_style">What other assumptions, if any, did you make while creating this equation? Justify.</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td> <input class=" resizedTextbox" type="text" id="question5" name="question5" value="{{answerData.[5]}}"/></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!--<div class="row">-->
+						<!--	<div class="col-lg-4 task">-->
+						<!--		Task-->
+						<!--	</div>-->
+						<!--	<div class="col-lg-8 task_text">-->
+						<!--		Quantitative Modeling-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div class="row">-->
+						<!--	<div class="col-lg-4 subtask">-->
+						<!--		Sub-Task <br> 2 of 3-->
+						<!--	</div>-->
+						<!--	<div class="col-lg-8 subtask_text">-->
+						<!--		Evaluate the utility of the model by answering the questions below.-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div class="row activity">-->
+						<!--	<p style="font-size:12pt">Does this equation relate power to the speed of the car? </p>-->
+						<!--	<div class="col-lg-6">-->
+						<!--		<button id="problem1quanteval_yes" onclick='document.getElementById("problem1quanteval_2").style.visibility = "visible"' type="button" class="btn btn-primary"> Yes </button> </div>-->
+							<!-- the div is made visible on clicking the button -->
+						<!--	<div class="col-lg-6">-->
+						<!--		<div class="popup" id="problem1quanteval_nopopup1" onclick="myFunction1()">-->
+						<!--			<span class="popuptext" id="myPopup1">Go back and edit the equation.</span>-->
+						<!--			<button id="problem1quanteval_no" type="button" class="btn btn-danger"> No</button>-->
+						<!--		</div>-->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div id="problem1quanteval_2" class="row activity" style="visibility:hidden">-->
+						<!--	<p style="font-size:12pt;"> Justify your response and answer other questions <a id="problem1quanteval_justify" href="https://goo.gl/forms/9iTwQOP9cAk4Ebgr2" target="_blank"> <span style="font-weight:bold;"> here. </span> </a> </p>-->
+						<!--	<div class="row" style="text-align:center" id="problem1quanteval_hint" onclick='document.getElementById("problem1quanteval_hintans").style.visibility = "visible"'><input type="image" src="/images/hintwndctive.png" style="width:120px;height:70px;" />-->
+								<!-- makes the problem1quanteval_hintans div visible when the div is clicked -->
+						<!--	</div>-->
+						<!--</div>-->
+						<!--<div id="problem1quanteval_hintans" class="row activity" style="visibility:hidden;font-size:12pt;text-align:center">-->
+							<!-- <p style="font-size:12pt;">  Look at the <a href="https://goo.gl/forms/2S7sgmPwBISOcTzT2"> <span style="font-weight:bold;"> equation </span> </a> you created again. </p> -->
+						<!--	See your saved equation-->
+						<!--	<textarea id="problem1quanteval_modeltxt" name="model" rows="3" cols="80"></textarea></br>-->
+						<!--	<input type="file" id="problem1quanteval_fileToLoad">-->
+						<!--	<button onclick="loadFileAsText()">Load Selected File</button> <br>-->
+						<!--</div>-->
+						<div class ="medium_margin" style="width:550px">
+						<button style="float:left" onclick="openquanteval()" id="problem1quantevalcomp_back" type="button" class="btn btn-info"> Check if your equation is complete </button>
+              <button style="float:right" onclick="openquantplan()" id="problem1quanteval_next" type="button" class="btn"> Plan your next steps </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+</body>
+<!-- <footer style="position: relative; bottom: 0; background: #000;">
+	<p>©2016   IDP in Educational Technology, Indian Institute of Technology Bombay, India</p>
+</footer>
+ -->
+<!-- jQuery library -->
+<script src="/javascripts/vendor/jquery-2.2.1.min.js"></script>
+<script src="/javascripts/vendor/bootstrap.min.js"></script>
+
+<!-- drag and drop js -->
+<script src="/javascripts/vendor/jquery-ui.js"></script>
+<script src="/javascripts/vendor/common.js"></script>
+<script src="/javascripts/vendor/pnotify.custom.min.js">
+	</script>
+<script>
+
+
+$(document).ready(function () {
+    
+   var count=0;
+var msgs = new Array("If you have done qualitative modeling, look at the list of dominant parameters you identified there. If not, you may want to look at the simulator now and identify the parameters which dominate power requirements",
+"Recall that energy is conserved in the system. Also recall that not all the power supplied by the battery can be directly used for the working of the car. There are losses in the systems and all machines do not operate at 100% efficiency. Incorporate this inefficiency or loss factor. ",
+"Look at the simulator to identify how much these losses are. Observe that input and output power to the motor are different. By what percentage?");	
+
+ $("#helper").on( 'click',  function (e) {
+       console.log("Clippy clikced");
+       if(count < 4)
+       var notice = new PNotify({
+    title: 'Help',
+    text: msgs[count++],
+    buttons: {
+        closer: false,
+        sticker: false
+    }
+});
+notice.get().click(function() {
+    notice.remove();
+});
+    } );
+
+
+$.get( "/api/problem/answer", { pageID: "/problem/1/tasks/role/quantitative/model" } )
+  .done(function( data ) {
+  //  alert( "Data Loaded: " + data );
+    $("#pre_txt").html(JSON.parse(data)[0]);
+  });
+  
+  $("#question0").focusout(function() {
+    submiQuestion("0",  $("#question0").val());
+  });
+  $("#question1").focusout(function() {
+    
+    
+    submiQuestion("1", $("#question1").val());
+  });
+  
+   $("#question2").focusout(function() {
+    submiQuestion("2",  $("#question2").val());
+  });
+  $("#question3").focusout(function() {
+    
+    
+    submiQuestion("3", $("#question3").val());
+  });
+   $("#question4").focusout(function() {
+    submiQuestion("4",  $("#question4").val());
+  });
+  $("#question5").focusout(function() {
+    
+    
+    submiQuestion("5", $("#question5").val());
+  });
+  
+  
+  
+   function submiQuestion(pk,value) {
+      $.post("/api/problem/answer", { pk: pk, pageID: window.location.pathname, value: value })
+        .done(function(data) {
+          if (data.includes("success")) {
+            console.log("Data saved ");
+          }
+          else {
+             console.log("Please try again ");
+          }
+        });
+    }
+    
+  });
+	// When the user clicks on div, open the popup
+	function myFunction1() {
+		var popup = document.getElementById('myPopup1');
+		popup.classList.toggle('show'); // chnges the class attribute of the the div
+		document.getElementById("problem1quanteval_create").style.fill = "#F3CA40"; // changes the background-color of the polygon
+	}
+</script>
+<script>
+	function hidedetils() {
+		document.getElementById("quant_desc").style.visibility = "hidden"
+		document.getElementById("quant_desc_hint").style.visibility = "hidden";
+	}
+	//loads the file that the user selects into the text area
+	function loadFileAsText() {
+		var fileToLoad = document.getElementById("problem1quanteval_fileToLoad").files[0];
+
+		var fileReader = new FileReader();
+		fileReader.onload = function(fileLoadedEvent) {
+			var textFromFileLoaded = fileLoadedEvent.target.result;
+			document.getElementById("problem1quanteval_modeltxt").value = textFromFileLoaded;
+		};
+		fileReader.readAsText(fileToLoad, "UTF-8");
+	}
+</script>
+
+<script>
+	// When the user clicks on div, open the popup
+	function myFunction() {
+		var popup = document.getElementById('myPopup');
+		popup.classList.toggle('show');
+		document.getElementById("problem1quanteval_create").style.fill = "#F3CA40";
+	}
+	
+	function openq1yes() {
+    var popup = document.getElementById('problem1quantevalcomp_q1yes');
+    popup.classList.toggle('show'); // cahnges the class of the div to show
+  }
+  function openq1no() {
+    var popup = document.getElementById('problem1quantevalcomp_q1no');
+    popup.classList.toggle('show'); // cahnges the class of the div to show
+  }
+  
+  function openq2yes() {
+    var popup = document.getElementById('problem1quantevalcomp_q2yes');
+    popup.classList.toggle('show'); // cahnges the class of the div to show
+  }
+  function openq2no() {
+    var popup = document.getElementById('problem1quantevalcomp_q2no');
+    popup.classList.toggle('show'); // cahnges the class of the div to show
+  }
+ function openfunc() {
+    window.open("/problem/1/tasks/role/functional/model/main", target = "_self");
+  }
+
+  // opens the page when the respective svg is clicked
+  function openfunceval() {
+    window.open("/problem/1/tasks/role/functional/evaluate/check", target = "_self");
+  }
+
+  // opens the page when the respective svg is clicked
+  function openfuncplan() {
+    window.open("/problem/1/tasks/role/functional/plan", target = "_self");
+  }
+
+
+  function openqual() {
+    window.open("/problem/1/tasks/role/qualitative/model", target = "_self");
+  }
+  // opens the document problem1qualmodel in the same frame when the function is called
+
+  function openquant() {
+    window.open("/problem/1/tasks/role/quantitative/model", target = "_self");
+  }
+  // opens the document problem1quantmodel in the same frame when the function is called
+
+  function opencalc() {
+    window.open("/problem/1/tasks/role/calculation/calculation", target = "_self");
+  }
+  // opens the document problem1calc in the same frame when the function is called
+
+  function openeval() {
+    window.open("/problem/1/tasks/role/evaluation/evaluation", target = "_self");
+  }
+
+  function openmap() {
+    window.open("/problem/1/map", target = "_self");
+  }
+
+function openquanteval(){
+  window.open("/problem/1/tasks/role/quantitative/evaluate/check", target = "_self");
+}
+function openqualplan(){
+  window.open("/problem/1/tasks/role/qualitative/plan", target = "_self");
+}
+
+ function openquantplan(){
+ 	 window.open("/problem/1/tasks/role/quantitative/plan", target = "_self");
+ }
+</script>

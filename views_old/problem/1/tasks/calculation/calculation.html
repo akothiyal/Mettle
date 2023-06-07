@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calculation - MEttLE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+	<link rel="stylesheet" href="/stylesheets/vendor/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+    <link rel="stylesheet" href="/stylesheets/css/style-2.css"> -->
+	<link rel="stylesheet" href="/stylesheets/vendor/pnotify.custom.min.css">
+	<!-- <link rel="stylesheet" href="/stylesheets/introjs.css"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
+	<script src="/javascripts/vendor/go.js">
+	</script>
+
+	<!-- <link href="../assets/stylesheets/goSamples.css" rel="stylesheet" type="text/css" />  <!-- you don't need to use this -->
+	<!-- this is only for the GoJS Samples framework -->
+	<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
+	<script src="/javascripts/vendor/Buttons.js"></script>
+
+
+	<script type="text/javascript">
+	</script>
+	<style>
+		label,
+		input {
+			display: block;
+		}
+
+		input.text {
+			margin-bottom: 12px;
+			width: 95%;
+			padding: .4em;
+		}
+
+		fieldset {
+			padding: 0;
+			border: 0;
+			margin-top: 5px;
+		}
+
+		h1 {
+			font-size: 1.2em;
+			margin: .6em 0;
+		}
+
+		div#users-contain {
+			width: 350px;
+			margin: 20px 0;
+		}
+
+		div#users-contain table {
+			margin: 1em 0;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		div#users-contain table td,
+		div#users-contain table th {
+			border: 1px solid #eee;
+			padding: .6em 10px;
+			text-align: left;
+		}
+
+		.ui-dialog .ui-state-error {
+			padding: .3em;
+		}
+
+		.validateTips {
+			border: 1px solid transparent;
+			padding: 0.3em;
+		}
+
+		#problem1quantmodel_logout {
+			margin-top: 8px;
+			height: 50px;
+		}
+.info{
+	background-color: #D0CEBA;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+	font-size: 12pt;
+	text-align: center;
+	color: #00000;
+	font-family: 'Lato', sans-serif;
+}
+
+.info p{
+	margin-bottom: 0;
+	font-family: 'Lato', sans-serif;
+	font-size: 14pt;
+	color: #000;
+	text-align: center;
+	font-weight: 2;
+}
+.activity{
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-family: 'Lato', sans-serif;
+	font-size: 12pt;
+}
+.activity p{
+	font-family: 'Lato', sans-serif;
+	font-size: 14pt;
+	color: #000;
+	margin-bottom: 0;
+}
+		/* Popup container - can be anything you want */
+.popup {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.popup .popuptext
+{
+    border: solid 1px black; 
+	visibility: hidden;
+	border-radius: 10px;
+    padding: 10px 10px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: #ddd;
+	color: #000;
+	text-align: left;
+	font-size: 12pt;
+    z-index: 100;
+    margin-top: -300px;
+    width: 600px;
+	height: 300px;
+    margin-left: -400px;
+}
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+
+/* SVG styles */
+.task_text{
+	font-size: 13pt;
+	color: #000;
+	font-family: 'Lato', sans-serif;
+}
+
+.task_map{
+	fill: #ffffff;
+	stroke: #ccc;
+	stroke-width: 2;
+}
+
+.task_text_eg {
+	font-size: 13pt;
+	color: #000;
+	font-style: italic;
+	font-family: 'Lato', sans-serif;
+}
+
+.subtask_map{
+fill: #ffffff;
+stroke: #ccc;
+stroke-width: 1;	
+}
+
+.subtask_text{
+	font-size: 11pt;
+	font-family: 'Lato', sans-serif;
+	color: #000;
+}
+.current_subtask_map{
+	fill:#E8EFEA;
+	stroke: #ccc;
+	stroke-width: 1;
+}
+
+.current_subtask_text{
+	font-size: 11pt;
+	font-family: 'Lato', sans-serif;
+	color: #000;
+	font-weight: bold;
+}
+.current_task_path{
+stroke:blue; 
+stroke-width:2; 
+fill:none;
+}
+
+.current_task_text{
+	font-size: 13pt;
+	color: #000;
+	font-weight: bold;
+	font-family: 'Lato', sans-serif;
+}
+	
+
+	</style>
+</head>
+<body>
+<section id="middlepart">
+	<div class="top-section">
+		<!-- navigation bar-->
+		<div class="row">
+			<div class="col-sm-6" style="text-align:center;vertical-align:middle">
+				<p>MEttLE</p>
+			</div>
+			<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+				<a href="/simulator" target="_blank"><input id="problem1calc_sim" type="image" src="/images/simulator.png" style="width:110px;height:67px;"/></a>
+			</div>
+			<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+				<a href="/calculator" target="_blank"><input id="problem1calc_calc" type="image" src="/images/calc.png" style="width:110px;height:67px;"/></a>
+			</div>
+			<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+				<a href="/information" target="_blank"><input id="problem1calc_info" type="image" src="/images/info.png" style="width:110px;height:67px;"/></a>
+			</div>
+			<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+				<a href="/scratch" target="_blank"><input  id="problem1calc_scribble"type="image" src="/images/scribble.png" style="width:110px;height:67px;"/></a>
+			</div>
+			<div class="col-sm-1" style="text-align:center;vertical-align:middle">
+				<a href="../../map" target="_blank"><input id="problem1calc_map"  type="image" src="/images/map.png" style="width:110px;height:67px;"/></a></div>
+			<div class="col-sm-1" style="text-align:center"> <a href="/logout"><button id="problem1calc_logout" style="margin-top: 8px;height: 50px;" type="button" class="btn btn-default">Logout</button></a></div>
+
+		</div>
+	</div>
+	<div class="register">
+		<div class="info">
+			<div class="row" style="text-align:center">
+				<div class="col-lg-8">
+					<p style="padding-left:100px;text-align:left">Substituting reasonable values in the equation, what is the estimate of power? </p>
+				</div>
+				<!-- <div class="col-lg-4">
+					<div style="float:right"> <img id="helper" src="/images/help.png" width="30px"></img>
+					</div>
+				</div> -->
+			</div>
+
+
+		</div>
+		<div class="container-fluid">
+			<div class="row activity" style="text-align:center">
+				<div class="col-lg-6">
+					<!-- To draw the box containing the various tasks and to navigate to any sub-task by clicking on it -->
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2520/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="580px" height="580px" viewBox="-30 -10 550 550" xml:space="preserve">
+
+		<g onclick="openfunc()">
+              <polygon id="problem1calc_task1"  points="0,250 0,500 250,500" class="task_map" />
+              <text x="5" y="450" class="task_text"> Functional Modeling</text>
+              </g>
+<g onclick="openqual()">
+		<polygon id="problem1calc_task2" points="0,0 0,250 250,500 500,500"  class="task_map"/>
+		<text  x="80" y="300" class="task_text"> Qualitative Modeling </text>
+</g>
+<g onclick="openquant()">
+		<polygon id="problem1calc_task3" points="250,0 250,250 500,500 500,250"  class="task_map"/>
+	    <text x="280" y="250" fill="#000000" font-size="18"> Quantitative Modeling </text>
+	    </g>
+        <!-- A this is the calc page the subtasks in the calc task are shown -->
+		<polygon id="problem1calc_search" points="0,0 250,250 250,0" onclick="opencalc()" class="current_subtask_map"/>
+        <text x="90" y="40" class="current_subtask_text">Search Values <tspan x="90" y="60" class="subtask_text"> for variables </tspan></text>
+		<polygon id="problem1calc_eval" points="130,130 250,130 250,0" onclick="opencalceval()" class="current_subtask_map"/>
+        <text x="180" y="95" class="current_subtask_text">Evaluate <tspan x="180" y="115"  class="subtask_text"> Values </tspan> </text>
+		<polygon id="problem1calc_calc" points="130,130 250,250 250,130" onclick="opencalccalc()" class="current_subtask_map"/>
+        <text x="175" y="150" class="current_subtask_text">Calculate <tspan x="175" y="170"  class="subtask_text"> Estimate </tspan> </text>
+
+		<polygon id="problem1calc_task5" points="250,0 500,250 500,0" class="task_map" onclick="openeval()"/>
+		<text id="problem1calc_task5" x="370" y="80" class="task_text">Evaluation </text>
+
+        <text x="80" y="-10" class="task_text" > Calculation  </text>
+		<path id="problem1calc_task4"  d="M 0,0 L 250,250 L 250,0 Z" class="current_task_path"/>
+		</svg>
+				</div>
+				<div class="col-lg-6" style="margin-top: 10px;">
+					<div style="height:550px;width:550px;border-style: groove;">
+					<div class="medium_margin subtask_text txt_left">
+					The equation for electric power you wrote was
+							<div id="pre_txt" class="medium_margin rcorners txt_left" style="height:50px;">
+						</div>
+						<div class="medium_margin subtask_text txt_left">
+							Identify reasonable values for the parameters in your equation and enter them in the table below.
+							
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Data</button> &nbsp&nbsp&nbsp&nbsp&nbsp 
+							<div class="popup"><button style="float:right" onclick="openprompts()" class="btn btn-primary" id="problem1calc_guide" type="button">Guide Me</button> <span class="popuptext" id="problem1calc_prompts">1) What should this parameter value be according to the problem specifications? <br><br>
+2) If this parameter is not specified in the problem, what are the highest and lowest values of this parameter that you can think of? Is the value that you have chosen in between these two extremes?<br><br>
+3) Compare your chosen value with some other value for this parameter that you know for sure. For example, compare length with the length of a scale. Or mass with a mass of 1Kg. <br><br>
+4) See the simulator for efficiency of motors and information page for drag coefficients. Identify which of these values is most applicable in the given problem. <br><br></span></div>
+
+							<div style="height:250px;">
+							<table class="table"  id="data_table">
+								<tr>
+									<th>Parameter
+									</th>
+									<th>Value
+									</th>
+									<th>Reasonable? Y/N
+									</th>
+									<th>Argument
+									</th>
+									<th>remove
+									</th>
+								</tr>
+
+							</table>
+							</div>
+							<div class="row activity subtask_text">
+								 Calculate the estimate and enter the value here. You may use the Calculator to calculate.<br>
+								<textarea id="question1" rows="1" cols="40" name="question0">{{answerData.[1]}}
+              				</textarea>
+							</div>
+							<div class="row">
+								<div class="col-md-8"></div>
+								<div class="col-md-4">
+									
+									<button type="button" class="btn btn-primary btn-sm editable-submit" onclick="stoer_data()"><i class="glyphicon glyphicon-ok"></i></button>
+                <button type="button" class="btn btn-default btn-sm editable-cancel" onclick="clearData()"><i class="glyphicon glyphicon-remove"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="medium_margin" style="width:550px">
+              <button style="float:right" onclick="openeval();" class="btn" id="problem1calc_next" type="button">Click to evaluate your estimated value</button>
+            </div>
+					<!--<div class="row">-->
+					<!--	<div class="col-lg-4 task">-->
+					<!--		Task-->
+					<!--	</div>-->
+					<!--	<div class="col-lg-8 task_text">-->
+					<!--		Calculation-->
+					<!--	</div>-->
+					<!--</div>-->
+					<!--<div class="row">-->
+					<!--	<div class="col-lg-4 subtask">-->
+					<!--		Sub-Tasks <br> 1,2,3-->
+					<!--	</div>-->
+					<!--	<div class="col-lg-8 subtask_text">-->
+					<!--		Search for the values of the variables in the equation, evaluate them and calculate the estimate.-->
+					<!--	</div>-->
+					<!--</div>-->
+					<!-- <div class="row activity" style="text-align:center">
+		<form id="problem1calc_form" name="form1" method="post" action="">
+		<table width="100%" border="1" cellspacing="0" cellpadding="0" id="mans">
+			 <tr>
+			 <td> Parameter = Value</td>
+         <td> Reasonable (Yes/No) </td>
+          <td> Argument </td> </tr>
+              <tr>
+            <td>
+        <label for="11"></label>
+        <input type="text" name="11" id="11" />
+          </td>
+       <td>
+        <label for="12"></label>
+        <input type="text" name="12" id="12" />
+      </td>
+    <td>
+        <label for="13"></label>
+        <input type="text" name="13" id="13" />
+      </td>
+    <td><a id="problem1calc_del" onclick="delTableRow($('#mans'));" href="#"><img style="width:10px; height: 10px" src="minus.png"></a></td>
+  </tr>
+</table>
+</form>
+<button id="problem1calc_add" type="button" onclick="addTableRow($('#mans'));">Add row</button>
+		</div> -->
+					<!--<div class="row activity" id="problem1calc_sheet" style="font-size:12pt;text-align:center">-->
+					<!--	<p> Use the sheet <a href="https://docs.google.com/spreadsheets/d/1dpcNwZsyZjfamHVuS2fhafHeWbObvOG1rgsykJiWOog/edit#gid=0" target="_blank"> <span style="font-weight:bold;"> here </span> </a> to enter your chosen values. </p>-->
+					<!-- Opens a google spreadsheet with the mentioned URL in a new window -->
+					<!--	See your saved equation-->
+					<!--	<textarea id="problem1calc_modeltxt" name="model" rows="3" cols="90"></textarea></br>-->
+					<!--	<input type="file" id="problem1calc_fileToLoad">-->
+					<!--	<button onclick="loadFileAsText()">Load Selected File</button> <br>-->
+					<!-- Loads the selected file into the textarea -->
+					<!--</div>-->
+					<!--<div class="row activity" style="text-align:center">-->
+					<!--	<div class="col-lg-6">-->
+					<!--		<div class="popup" id="problem1calc_hint2" onclick="myFunction2()"><input type="image" src="/images/hintwndctive.png" style="width:120px;height:70px;" />-->
+					<!-- to open the dialog box when the button shaped image is clicked -->
+					<!--			<span class="popuptext" id="myPopup2">What are the highest and lowest values of this parameter that you can think of? Is the value that you have chosen in between these two extremes? </span>-->
+					<!-- the dialogbox whose visiblity is hidden until the hint link is clicked -->
+					<!--		</div>-->
+					<!--	</div>-->
+					<!--	<div class="col-lg-6">-->
+					<!--		<div class="popup" id="problem1calc_hint3" onclick="myFunction3()"><input type="image" src="/images/hintwndctive.png" style="width:120px;height:70px;" />-->
+					<!-- to open the dialog box when the button shaped image is clicked -->
+					<!--			<span class="popuptext" id="myPopup3">Compare your chosen value with some other value for this parameter that you know for sure. For example, compare length with the length of a scale. Or mass with a mass of 1Kg. </span>-->
+					<!-- the dialogbox whose visiblity is hidden until the hint link is clicked -->
+					<!--		</div>-->
+					<!--	</div>-->
+					<!--</div>-->
+					<!--<div class="row activity">-->
+					<!--	<div class="col-sm-2"> </div>-->
+					<!--	<div class="col-sm-8"> <a href="calc.html" target="_blank"><button id="problem1calc_open" type="button" class="btn btn-primary"> Open the calculator to calculate the estimate of power.</button></a> </div>-->
+					<!-- opens calc.html file when the button is clicked -->
+					<!--	<div class="col-sm-2"> </div>-->
+					<!--</div>-->
+					<!--<div class="row activity" id="problem1calc_value">-->
+					<!--	<p style="font-size:12pt;"> Enter your answer <a href="https://goo.gl/forms/0GVXoUT0x58vlnxy1" target="_blank"> <span style="font-weight:bold;"> here. </span> </a> </p>-->
+					<!-- opens a link to the google form in a new window when the link is clicked -->
+					<!--	<a href="problem1eval.html"><button id="problem1calc_submit" type="button" class="btn btn-info"> Evaluate this value </button></a>-->
+					<!-- Navigates to problem1eval.html page when button is clicked -->
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+		</div>
+</section>
+
+<div id="dialog-form" title="Create new user">
+
+</div>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Enter reasonable values for the parameters</h4>
+			</div>
+			<div class="modal-body">
+
+
+				<form>
+					<fieldset>
+						<label class="validateTips"></label>
+						<label for="param">Parameter</label>
+						<input type="text" name="param" id="param" class="text ui-widget-content ui-corner-all">
+						<label for="p_val">Value</label>
+						<input type="text" name="p_val" id="p_val" class="text ui-widget-content ui-corner-all">
+						<label for="optradio">Reasonable?</label>
+						<label class="radio-inline"><input type="radio" value="Yes" name="val_t" checked >Yes</label>
+						<label class="radio-inline"><input type="radio" value="No" name="val_t">No</label>
+
+						<label for="argument">Argument</label>
+						<input type="text" name="argument" id="argument" class="text ui-widget-content ui-corner-all">
+
+						<!-- Allow form submission with keyboard without duplicating the dialog button -->
+						<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+					</fieldset>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="add_submit" onclick="add_data()" class="btn btn-success">Add</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+</body>
+<!-- <footer style="position: relative; bottom: 0; background: #000;">
+	<p>©2016   IDP in Educational Technology, Indian Institute of Technology Bombay, India</p>
+</footer>
+ -->
+<!-- jQuery library -->
+<script src="/javascripts/vendor/jquery-2.2.1.min.js"></script>
+
+<script src="/javascripts/vendor/bootstrap.min.js"></script>
+<script src="/javascripts/vendor/common.js"></script>
+<script src="/javascripts/vendor/pnotify.custom.min.js">
+</script>
+<script>
+	// When the user clicks on div, open the popup
+	function myFunction() {
+		var popup = document.getElementById('myPopup');
+		popup.classList.toggle('show');
+		document.getElementById("quant_desc_hint").style.visibility = "visible";
+	}
+</script>
+<script>
+	// When the user clicks on div, open the popup
+	function myFunction2() {
+		var popup = document.getElementById('myPopup2');
+		popup.classList.toggle('show'); //To change  the class of the element to show
+	}
+</script>
+<script>
+	// When the user clicks on div, open the popup
+	function myFunction3() {
+		var popup = document.getElementById('myPopup3');
+		popup.classList.toggle('show'); //To change  the class of the element to show
+	}
+</script>
+
+<script>
+	var editor;
+	$(document).ready(function() {
+
+
+				$(document).ready(function() {
+					var count = 0;
+					var msgs = new Array("What are the highest and lowest values of this parameter that you can think of? Is the value that you have chosen in between these two extremes?",
+						" Compare your chosen value with some other value for this parameter that you know for sure. For example, compare length with the length of a scale. Or mass with a mass of 1Kg.",
+						" See the simulator for efficiency of motors and information page for drag coefficients. Identify which of these values is most applicable in the given problem.");
+
+					$("#helper").on('click', function(e) {
+						console.log("Clippy clikced");
+						if (count < 3)
+							var notice = new PNotify({
+								title: 'Help',
+								text: msgs[count++],
+								buttons: {
+									closer: false,
+									sticker: false
+								}
+							});
+						notice.get().click(function() {
+							notice.remove();
+						});
+					});
+
+$.get("/api/problem/answer", { pageID: "/problem/1/tasks/role/evaluation/evaluation" })
+        .done(function(data) {
+          
+          if(JSON.parse(data)[2]==="1"){
+        	$('input[name=opt]')[0].checked = true	
+          }else{
+          	$('input[name=opt]')[1].checked = true
+          }
+        });
+        
+        $.get("/api/problem/answer", { pageID: "/problem/1/tasks/role/quantitative/model" })
+        .done(function(data) {
+          //  alert( "Data Loaded: " + data );
+          $("#pre_txt").html(JSON.parse(data)[0]);
+        });
+
+					$.get("/api/problem/answer", { pageID: "/problem/1/tasks/role/calculation/calculation" })
+						.done(function(data) {
+							//  alert( "Data Loaded: " + data );
+							jsb = JSON.parse(JSON.parse(data)[0])
+							for (var i in jsb) {
+								if (i != 0)
+									$("#data_table tbody").append("<tr  id='" + (i) + "' >" +
+										"<td>" + jsb[i][0] + "</td>" +
+										"<td>" + jsb[i][1] + "</td>" +
+										"<td>" + jsb[i][2] + "</td>" +
+										"<td>" + jsb[i][3] + "</td>" +
+										"<td><a href='#' class='rem' id='" + (i) + "' class='rem'>Remove</a> </td>" +
+										"</tr>");
+
+							}
+							$(".rem").click(function() {
+								tid = $(this).attr('id');
+								alert("removing data ");
+							$('#'+tid).remove();
+							//	$.when(	$(tid).remove()).then( $("table#data_table").change() );
+								setTimeout(  test, 1000);
+
+							});
+
+						function test(){
+   
+
+								submiQuestion("0", getTableData());
+							}
+
+});
+
+							//$(".rem").click(function(){
+							//	tid=$(this).attr('id');
+							//alert("data_table "+ tid);
+							//       $(tid).remove();  
+							//       submiQuestion("0",getTableData());
+							//});
+
+						});
+
+
+
+ 
+
+				});
+
+				function updateTips(t) {
+					$(".validateTips")
+						.text(t)
+						.addClass("ui-state-highlight");
+					setTimeout(function() {
+						$(".validateTips").removeClass("ui-state-highlight", 1500);
+					}, 500);
+				}
+
+
+
+				function checkLength(o, n, min, max) {
+					if (o.val().length > max || o.val().length < min) {
+						o.addClass("ui-state-error");
+						updateTips(n + " Can not be left empty");
+						return false;
+					}
+					else {
+						return true;
+					}
+				}
+
+				function add_data() {
+					var valid = true;
+					//	allFields.removeClass("ui-state-error");
+
+					valid = valid && checkLength($("#param"), "parameter", 1, 1000);
+					valid = valid && checkLength($("#p_val"), "value", 1, 10000);
+					valid = valid && checkLength($("#argument"), "argument", 1, 10000);
+					// valid = valid && checkLength(email, "email", 6, 80);
+					// valid = valid && cdata_tableheckLength(password, "password", 5, 16);
+
+					// valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+					// valid = valid && checkRegexp(email, emailRegex, "eg. ui@jquery.com");
+					// valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
+
+					radioValue = $("input[name='val_t']:checked").val();
+
+
+					if (valid) {
+						$("#data_table tbody").append("<tr id='" + $('#data_table >tbody >tr').length + "' >" +
+							"<td>" + $("#param").val() + "</td>" +
+							"<td>" + $("#p_val").val() + "</td>" +
+							"<td>" + radioValue + "</td>" +
+							"<td>" + $("#argument").val() + "</td>" +
+							"<td><a href='#' id='" + $('#data_table >tbody >tr').length + "' class='rem'>Remove</a> </td>" +
+							"</tr>");
+						$('#myModal').modal('hide');
+						submiQuestion("0", getTableData());
+
+					}
+					return valid;
+				}
+
+function stoer_data() {
+
+        submiQuestion("1", $("#question1").val());
+      }
+      
+    function  clearData(){
+    	$("#question1").val('');
+    }
+				function getTableData() {
+					var html_table_data;
+					jsonObj = [];
+					var jsb = {};
+					var data_table = {};
+					var j = 0;
+					$('#data_table tbody>tr').each(function() {
+
+						var data_str;
+						var obj = {};
+						var i = 0;
+
+
+						$('td', this).each(function() {
+							//	data_table.t[i] =$(this).text();
+							obj[i++] = $(this).text();
+							// if (html_table_data.length == 0 || bRowStarted == true) {  
+							//     html_table_data += $(this).text();  
+							//     bRowStarted = false;  
+							// }  
+							// else  
+							//     html_table_data += " | " + $(this).text();  
+
+						});
+						// if(data_table.length==4)
+						data_table[j++] = obj;
+					});
+
+					return (JSON.stringify(data_table));
+				}
+
+
+				function submiQuestion(pk, value) {
+					$.post("/api/problem/answer", { pk: pk, pageID: window.location.pathname, value: value })
+						.done(function(data) {
+							if (data.includes("success")) {
+								console.log("Data saved ");
+							}
+							else {
+								console.log("Please try again ");
+							}
+						});
+				}
+
+				function hidedetils() {
+					//TODO REMOVE POSSIBLE TYPO
+					document.getElementById("calc_desc").style.visibility = "hidden"
+					document.getElementById("quant_desc_hint").style.visibility = "hidden"
+				}
+
+				// To load the selectedfile and display its contents in the div
+				function loadFileAsText() {
+					var fileToLoad = document.getElementById("problem1calc_fileToLoad").files[0];
+
+					var fileReader = new FileReader();
+					fileReader.onload = function(fileLoadedEvent) {
+						var textFromFileLoaded = fileLoadedEvent.target.result;
+						document.getElementById("problem1calc_modeltxt").value = textFromFileLoaded;
+					};
+					fileReader.readAsText(fileToLoad, "UTF-8");
+				}
+
+				// TODO: IN-DOCUMENT JS, BAD PRACTICE. TO REMOVE
+
+				// adds a new row
+				function addTableRow(jQtable) {
+					jQtable.each(function() {
+						var tds = '<tr>';
+						jQuery.each($('tr:last td', this), function() { tds += '<td>' + $(this).html() + '</td>'; });
+						tds += '</tr>';
+						if ($('tbody', this).length > 0) {
+							$('tbody', this).append(tds);
+						}
+						else { $(this).append(tds); }
+					});
+				}
+
+				// removes clicked row when the link is clicked
+				// TODO: IN-DOCUMENT JS, BAD PRACTICE. TO REMOVE
+			
+				 function openeval() {
+    window.open("/problem/1/tasks/role/evaluation/evaluation", target = "_self");
+  }
+				
+				function openfunc() {
+    window.open("/problem/1/tasks/role/functional/model/main", target = "_self");
+  }
+  function openqual() {
+    window.open("/problem/1/tasks/role/qualitative/model", target = "_self");
+  }
+  function openquant() {
+    window.open("/problem/1/tasks/role/quantitative/model", target = "_self");
+  }
+  function openprompts() {
+    var popup = document.getElementById('problem1calc_prompts');
+    popup.classList.toggle('show'); // cahnges the class of the div to show
+  }
+  
+</script>

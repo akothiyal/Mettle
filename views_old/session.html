@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Welcome to MEttLE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- To use bootstrap for styling -->
+
+	<link rel="stylesheet" href="/stylesheets/custom/migrated.css">
+<link rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script src="/javascripts/angular/angular.min.js"></script>
+	<script src="/javascripts/angular/angular-animate.min.js"></script>
+	<script src="/javascripts/angular/angular-aria.min.js"></script>
+	<script src="/javascripts/angular/angular-messages.min.js"></script>
+	<script src="/javascripts/angular/angular-material.min.js"></script>
+	<script src="/javascripts/angular/md-data-table.min.js"></script>
+	<script src="/javascripts/angular/angular-validator.min.js"></script>
+	<!-- <link rel="stylesheet" href="/stylesheets/introjs.css"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
+</head>
+
+<body style="height: 100%;" ng-app="myApp" ng-controller="MyController" ng-cloak>
+
+
+	<section class="middlepart">
+		<div class="top-section">
+			<div class="row">
+				<div class="col-sm-6" style="text-align:center;vertical-align:middle">
+					<p>MEttLE</p>
+				</div>
+				<!--<div class="col-sm-1" style="text-align:center;vertical-align:middle">-->
+				<!--	<a href="../../simulator" target="_blank"><input id="problem1quantmodel_sim" type="image" src="/images/simulator.png" style="width:110px;height:67px;"/></a>-->
+				<!--</div>-->
+				<!--<div class="col-sm-1" style="text-align:center;vertical-align:middle">-->
+				<!--	<a href="../../calculator" target="_blank"><input id="problem1quantmodel_calc" type="image" src="/images/calc.png" style="width:110px;height:67px;"/></a>-->
+				<!--</div>-->
+				<!--<div class="col-sm-1" style="text-align:center;vertical-align:middle">-->
+				<!--	<a href="../../information" target="_blank"><input id="problem1quantmodel_info" type="image" src="/images/info.png" style="width:110px;height:67px;"/></a>-->
+				<!--</div>-->
+				<!--<div class="col-sm-1" style="text-align:center;vertical-align:middle">-->
+				<!--	<a href="../../scratch" target="_blank"><input  id="problem1quantmodel_scribble"type="image" src="/images/scribble.png" style="width:110px;height:67px;"/></a>-->
+				<!--</div>-->
+				<!--<div class="col-sm-1" style="text-align:center;vertical-align:middle">-->
+				<!--	<a href="map" target="_blank"><input id="problem1quantmodel_map" type="image" src="/images/map.png" style="width:110px;height:67px;"/></a>-->
+				<!--</div>-->
+				<!-- In the above 12 lines images are being used for the various options and they are made to look like buttons and the anchor tag is added to load the appropriate pages-->
+				<div class="col-sm-1 col-sm-offset-5" style="text-align:center"> <a href="/logout"><button id="problem1quantmodel_logout" type="button" class="btn btn-default">Logout</button></a></div>
+			</div>
+			<!--<div class="row">-->
+			<!--	<div class="col-sm-4" style="float:right">-->
+			<!--		<a data-toggle="modal" ng-click="showoption()" href="#ui_modal_new_session">Start solving problem</a> |-->
+			<!--		<a href="/history/list/1">Previous Solved Problems</a> | <a href="#">Account</a>-->
+			<!--	</div>-->
+			<!--</div>-->
+		</div>
+		<div class="register" style="height: 46%;">
+			<div class="info">
+				<p> Today you will learn about engineering estimation and how to solve estimation problems </div>
+			</p>
+		</div>
+		<div class="container-fluid" style="height: 100%;">
+			
+			<div class="row">
+					<div class="col-md-6 col-md-offset-3" align="justify">
+<ul >
+                 <li>Estimation is the process of determining approximate values (say, to the right order of magnitude) for a physical quantity in a physical system without complete information and knowledge of the context.
+</li>
+<li>
+	Estimation is often done as a first step in design, to establish the feasibility of an idea or to evaluate if a component can be used in the design.
+
+</li>
+<li>
+	The emphasis in estimation is on “speed” and “reasonableness”. In other words, we would rather have an approximate number quickly rather than do elaborate time-consuming calculations to get the exact number because approximate numbers are sufficient to make decisions and move forward in the design process. A good way to get a useful estimate is to consider the “worst case” scenario and find the maximum value for a parameter. So think about what is the worst case scenario and when is the parameter value likely to be the highest.
+
+</li>
+<li>
+	Practicing engineers often make such estimates on the job for many quantities such as power required, time required, speed attainable, weight of an object, etc. When you graduate and begin working you will be required to make such estimates on the job. 
+</li>
+<li> 
+In addition to being able to estimate quantities, you must be able to evaluate if the value for a physical quantity “makes sense” or is reasonable in the given context.
+
+</li>
+</ul>
+</div>
+		</div>	
+			<div class="row">
+				<div class="col-sm-4" style="float:right">
+					<a data-toggle="modal" ng-click="showoption()" href="#ui_modal_new_session">Start solving problem</a> |
+					<a href="/history/list/1">Your previously solved problems</a> 
+				</div>
+			</div>
+			</div>
+		
+	</section>
+	<footer style="position: fixed; bottom: 0; background: #000; width: 100%">
+		<p style="color: white; font-size:1em; font-weight: 600;">©2018 IDP in Educational Technology, Indian Institute of Technology Bombay, India</p>
+	</footer>
+
+	<div aria-hidden="true" class="modal fade" id="ui_modal_new_session" role="dialog" tabindex="-1" style="display: none;">
+		<form name="session-form" id="session_details" action="session/data" method="post">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<div class="modal-heading">
+						<a class="modal-close" data-dismiss="modal" ng-click="clearform()">×</a>
+						<h2 class="modal-title">Attempt Title</h2>
+					</div>
+					<div class="modal-inner">
+						{{#if errorOccured}}
+						<div class="alert alert-danger">
+							{{#each errors}}
+							<span style="display: block;">
+                              <strong>Error!</strong> {{this}}.
+                            </span> {{/each}}
+						</div>
+						{{/if}}
+						<div class="control-group">
+							<input type="text" class="login-field" value="" name="title" placeholder="Enter Title for attempt" id="title">
+							<label class="login-field-icon fui-user" for="title"></label>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-green waves-attach waves-effect" value="submit" name="Submit" ng-click="updateForm()">Submit</button> &nbsp;&nbsp;&nbsp; <a class="btn btn-red waves-attach waves-light waves-effect" onclick="#">Clear</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script>
+		var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularValidator']).controller(
+			'MyController', MyController);
+
+		// $("#problem").click(function)
+
+		app.directive('myDirective', function() {
+			return {
+				require: 'ngModel',
+				link: function(scope, element, attr, mCtrl) {
+					function myValidation(value) {
+						if (value.indexOf("e") > -1) {
+							mCtrl.$setValidity('charE', true);
+						}
+						else {
+							mCtrl.$setValidity('charE', false);
+						}
+						return value;
+					}
+					mCtrl.$parsers.push(myValidatiuserIDon);
+				}
+			};
+		});
+
+
+		function MyController($scope, $http) {
+			// 	$scope.deleteitm='';
+			// 	$scope.integerval = '/^\d*$/';
+			// 	$scope.getDataFromServer = function() {
+			// 		$http({
+			// 			method : 'GET',
+			// 			url : 'session/data'
+			// 		}).success(function(data, status, headers, config) {
+			// 			$scope.artfs = data;
+			// 		}).error(function(data, status, headers, config) {
+			// 			// called asynchronously if an error occurs
+			// 			// or server returns response with an error status.
+			// 		});
+
+			// 	};
+			// 	$scope.submitForm = function() {
+			// 		console.log($scope.artf);
+			// 		 var formData = new FormData();
+			// 		 if($scope.files00[0])
+			//       	 formData.append('image', $scope.files00[0].lfFile);
+			// 		 else
+			// 			 formData.append('image', "nochange");
+			//       	 formData.append('name',$scope.artf.name);
+			//       	 formData.append('desc',$scope.artf.desc);
+			//       	 formData.append('code',$scope.artf.code);
+			//       	 $http.put('artifactsetting',formData, {
+			//	            transformRequest: angular.identity,
+			//	            headers: {'Content-Type': undefined}
+			//	        })
+			//	        .success(function(data) {
+			// 	        	  console.log(data);
+			// 	        	  $scope.getDataFromServer();
+			// 	        	  $scope.artf="";
+			// 	        	  $scope.api.removeAll()	
+			// 	        	  $('#ui_modal_example_default').modal('hide');
+			// 	            }) .error(function(){
+			// 	 	        });;
+			// 	};
+			// 	$scope.updateForm = function() {
+			// 		console.log($scope.artff);
+			// 		var formData = new FormData();
+			// 		if( $scope.files01[0])
+			//         	 formData.append('image', $scope.files01[0].lfFile);
+			// 			 else
+			// 				 formData.append('image', "nochange");
+			// 		formData.append('id',$scope.artff.id);	
+			//      	 formData.append('name',$scope.artff.name);
+			//      	 formData.append('desc',$scope.artff.desc);
+			//      	 formData.append('artcode',$scope.artff.artcode);
+			//      	 $http.post('artifactsetting',formData, {
+			//             transformRequest: angular.identity,
+			//             headers: {'Content-Type': undefined}
+			//         }).success(function(data) {
+			// 	        	  console.log(data);
+			// 	        	  $scope.getDataFromServer();
+			// 	        	  $scope.artff="";
+			// 	        	  $scope.api1.removeAll();	
+			// 	        	  $('#ui_modal_update').modal('hide');
+
+			// 	            });
+			// 	};
+			// 	$scope.deleteForm = function() {
+			// 		console.log("delete called");
+			// 		$http({
+			// 			method : 'GET',
+			// 			url : 'qrcodes'
+			// 		}).success(function(data, status, headers, config) {
+			// 			//$scope.artfs = data;
+			// 		}).error(function(data, status, headers, config) {
+			// 			// called asynchronously if an error occurs
+			// 			// or server returns response with an error status.
+			// 		});
+			// 	};
+
+			$scope.showoption = function() {
+				console.log('show option clicked');
+				//	$('#ui_modal_new_session').modal('show');
+
+			};
+			// 	$scope.deletefrm = function ( idx ) {
+			// 		  var lang = $scope.artfs[idx];
+			// 		console.log(idx);
+			// 		var dta={ data : idx};
+			// 		$http({
+			// 	          method  : 'DELETE',
+			// 	          url     : 'artifactsetting',
+			// 	          data    : dta, //forms user object
+			// 	          headers : {'Content-Type': 'application/json'} 
+			// 	         })
+			// 	          .success(function(data) {
+			// 	        	  console.log(data);
+			// 	        	  $scope.getDataFromServer();
+			// 	        	  //$scope.user="";
+			// 	        	 // $('#ui_modal_u').modal('hide');
+			// 	            });  
+			// 		};
+
+			// 		$scope.setdelete = function ( idx ) {
+			// 			  //var lang = $scope.langs[idx];
+			// 			//console.log(idx);
+			// 			$scope.deleteitm=idx ;
+			// 			console.log("id set "+$scope.deleteitm );
+			// 			};
+
+			// 			$scope.deletefrm_new = function ( ) {
+			//				  //var lang = $scope.langs[idx];
+			//				console.log("to be deleted "+ $scope.deleteitm);
+			//				var dta={ data : $scope.deleteitm};
+			//				$http({
+			//			          method  : 'DELETE',
+			//			          url     : 'artifactsetting',
+			//			          data    : dta, //forms user object
+			//			          headers : {'Content-Type': 'application/json'} 
+			//			         })
+			//			          .success(function(data) {
+			//			        	  console.log(data);
+			//			        	  $scope.getDataFromServer();
+			//			        	  //$scope.user="";
+			//			        	 // $('#ui_modal_u').modal('hide');
+			//			            });  
+			//				};
+
+			//				$scope.clearform = function (){
+			//					$('#uname').val("");
+			//					$('#desc').val("");
+			//					$('#code').val("");
+			//					$scope.api1.removeAll();
+			//					$scope.api0.removeAll();
+			//				};
+
+
+			//				$scope.textValidator = function(text) {
+
+			//					if(!text){return;}
+
+
+
+			//					if (!text.match(/[a-zA-Z]/)) {
+			//					 return "This Field must have at least one  letter";
+			//				}
+
+
+
+			//					return true;
+			//				};
+		};
+	</script>
+
+	<script src="/javascripts/vendor/jquery-2.2.1.min.js"></script>
+	<script src="/javascripts/vendor/bootstrap.min.js"></script>
+</body>
+
+</html>
